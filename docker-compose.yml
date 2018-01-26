@@ -1,0 +1,11 @@
+version: '2'
+services:
+
+  cayley:
+    command: -c /conf/cayley.yml
+    image: quay.io/cayleygraph/cayley
+    ports:
+      - "64210:64210"
+    volumes:
+      - ./data:/data
+      - ./conf:/conf
