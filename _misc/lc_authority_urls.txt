@@ -1,0 +1,15 @@
+http://id.loc.gov/static/data/authoritieschildrensSubjects.nt.zip
+http://id.loc.gov/static/data/authoritiesdemographicTerms.nt.skos.zip
+http://id.loc.gov/static/data/authoritiesgenreForms.nt.zip
+http://id.loc.gov/static/data/authoritiesnames.nt.skos.zip
+http://id.loc.gov/static/data/authoritiesperformanceMediums.nt.zip
+http://id.loc.gov/static/data/authoritiessubjects.nt.skos.zip
+http://id.loc.gov/static/data/vocabularycountries.nt.zip
+http://id.loc.gov/static/data/vocabularyethnographicTerms.nt.zip
+http://id.loc.gov/static/data/vocabularygeographicAreas.nt.zip
+http://id.loc.gov/static/data/vocabularyiso639-1.nt.zip
+http://id.loc.gov/static/data/vocabularyiso639-2.nt.zip
+http://id.loc.gov/static/data/vocabularyiso639-5.nt.zip
+http://id.loc.gov/static/data/vocabularylanguages.nt.zip
+http://id.loc.gov/static/data/vocabularyorganizations.nt.zip
+http://id.loc.gov/static/data/vocabularyrelators.nt.zip
