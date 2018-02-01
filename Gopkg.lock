@@ -9,7 +9,7 @@
 
 [[projects]]
   name = "github.com/cayleygraph/cayley"
-  packages = ["clog","graph","graph/iterator","graph/kv","graph/kv/bolt","graph/log","graph/memstore","graph/path","graph/proto","graph/shape","internal/lru","quad","quad/pquads","quad/pquads/pio","query","query/gizmo","schema","voc","voc/rdf","voc/rdfs","voc/schema","writer"]
+  packages = ["clog","graph","graph/iterator","graph/kv","graph/kv/bolt","graph/log","graph/memstore","graph/path","graph/proto","graph/shape","graph/sql","graph/sql/postgres","internal/lru","quad","quad/pquads","quad/pquads/pio","query","query/gizmo","schema","voc","voc/rdf","voc/rdfs","voc/schema","writer"]
   revision = "6f8446e4171ebc84955dd0ff91927510ba1aee16"
   version = "v0.7.0"
 
@@ -36,6 +36,12 @@
   packages = ["gogoproto","proto","protoc-gen-gogo/descriptor"]
   revision = "342cbe0a04158f6dcb03ca0079991a51a4248c02"
   version = "v0.5"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/lib/pq"
+  packages = [".","oid"]
+  revision = "19c8e9ad00952ce0c64489b60e8df88bb16dd514"
 
 [[projects]]
   name = "github.com/pmezard/go-difflib"
@@ -70,6 +76,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "e21367f6af811a03f06827e2244837ac57126e0d5ed094336a1088fabd939e38"
+  inputs-digest = "2c5d525403f778c11ff583cc075d156c2ae1f94901dd06601a2132f03fffd097"
   solver-name = "gps-cdcl"
   solver-version = 1

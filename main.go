@@ -8,6 +8,7 @@ import (
 
 	"github.com/cayleygraph/cayley/graph"
 	_ "github.com/cayleygraph/cayley/graph/kv/bolt"
+	_ "github.com/cayleygraph/cayley/graph/sql/postgres"
 	_ "github.com/cayleygraph/cayley/query/gizmo"
 	"github.com/voidfiles/a/api"
 )
