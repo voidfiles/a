@@ -9,9 +9,15 @@
 
 [[projects]]
   name = "github.com/cayleygraph/cayley"
-  packages = ["clog","graph","graph/iterator","graph/kv","graph/kv/bolt","graph/log","graph/path","graph/proto","graph/shape","internal/lru","quad","quad/pquads","quad/pquads/pio","query","query/gizmo","schema","voc","voc/rdf","voc/rdfs","voc/schema"]
+  packages = ["clog","graph","graph/iterator","graph/kv","graph/kv/bolt","graph/log","graph/memstore","graph/path","graph/proto","graph/shape","internal/lru","quad","quad/pquads","quad/pquads/pio","query","query/gizmo","schema","voc","voc/rdf","voc/rdfs","voc/schema","writer"]
   revision = "6f8446e4171ebc84955dd0ff91927510ba1aee16"
   version = "v0.7.0"
+
+[[projects]]
+  name = "github.com/davecgh/go-spew"
+  packages = ["spew"]
+  revision = "346938d642f2ec3594ed81d874461961cd0faa76"
+  version = "v1.1.0"
 
 [[projects]]
   name = "github.com/dlclark/regexp2"
@@ -30,6 +36,18 @@
   packages = ["gogoproto","proto","protoc-gen-gogo/descriptor"]
   revision = "342cbe0a04158f6dcb03ca0079991a51a4248c02"
   version = "v0.5"
+
+[[projects]]
+  name = "github.com/pmezard/go-difflib"
+  packages = ["difflib"]
+  revision = "792786c7400a136282c1664665ae0a8db921c6c2"
+  version = "v1.0.0"
+
+[[projects]]
+  name = "github.com/stretchr/testify"
+  packages = ["assert"]
+  revision = "12b6f73e6084dad08a7c6e575284b177ecafbc71"
+  version = "v1.2.1"
 
 [[projects]]
   branch = "master"
@@ -52,6 +70,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "1ff11a20ff6518f9a5ef7a57841a7959505d6b6a149ddcc73d44943e8078f154"
+  inputs-digest = "e21367f6af811a03f06827e2244837ac57126e0d5ed094336a1088fabd939e38"
   solver-name = "gps-cdcl"
   solver-version = 1
