@@ -10,9 +10,10 @@ import (
 	"github.com/blevesearch/bleve/mapping"
 )
 
-// Manager manages a search index
+// AuthoritySearch manages a search index
 type AuthoritySearch interface {
 	BatchIndex([]QuadForIndex) error
+	Query(string) (*bleve.SearchResult, error)
 }
 
 type QuadForIndex struct {
@@ -77,6 +78,13 @@ func (i *Index) BatchIndex(quads []QuadForIndex) error {
 	}
 
 	return nil
+}
+
+func (i *Index) Query(label string) (*bleve.SearchResult, error) {
+	query := bleve.NewFuzzyQuery(label)
+	search := bleve.NewSearchRequest(query)
+	search.Fields = []string{"Object", "Subject", "Predicate"}
+	return i.index.Search(search)
 }
 
 func buildQuadMapping() (mapping.IndexMapping, error) {

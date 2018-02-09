@@ -39,6 +39,13 @@ To see the logs of the server
 make logs
 ```
 
+## Small Data Queries
+
+http://localhost:8080/api/v1/query/subject?subject=%3Chttp://id.loc.gov/authorities/childrensSubjects/sj00001253%3E
+
+http://localhost:8080/api/v1/query/object?query=Ceratopsians
+
+
 ## Fun Queries
 
 ```js

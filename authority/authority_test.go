@@ -4,6 +4,7 @@ import (
 	"log"
 	"testing"
 
+	"github.com/blevesearch/bleve"
 	"github.com/cayleygraph/cayley/graph"
 	_ "github.com/cayleygraph/cayley/graph/memstore"
 	"github.com/cayleygraph/cayley/quad"
@@ -17,6 +18,10 @@ type AuthoritySearchMock struct{}
 
 func (a *AuthoritySearchMock) BatchIndex([]search.QuadForIndex) error {
 	return nil
+}
+
+func (a *AuthoritySearchMock) Query(label string) (*bleve.SearchResult, error) {
+	return nil, nil
 }
 
 func TestNewQueryExecutor(t *testing.T) {

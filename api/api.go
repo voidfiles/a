@@ -5,6 +5,7 @@ import (
 	"io"
 	"net/http"
 
+	"github.com/blevesearch/bleve"
 	"github.com/cayleygraph/cayley/query"
 	"github.com/voidfiles/a/authority"
 )
@@ -12,6 +13,7 @@ import (
 // AuthorityResolver provides the interface of authority.Resolver
 type AuthorityResolver interface {
 	FindLabelsForID(string) ([]authority.PredicateObject, error)
+	FindIdsFromLabel(string) (*bleve.SearchResult, error)
 }
 
 // ErrorFunc handles writing an error response
@@ -42,6 +44,15 @@ func SubjectQueryHandler(resolver AuthorityResolver, w http.ResponseWriter, req 
 	_ = WriteResult(w, resp)
 }
 
+// ObjectQueryHandler provides an HTTP Api to resolver.FindLabelsForID
+func ObjectQueryHandler(resolver AuthorityResolver, w http.ResponseWriter, req *http.Request) {
+	resp, err := resolver.FindIdsFromLabel(req.URL.Query().Get("object"))
+	if err != nil {
+		ErrorFunc(w, err)
+	}
+	_ = WriteResult(w, resp)
+}
+
 func wrap(resolver AuthorityResolver, handler func(AuthorityResolver, http.ResponseWriter, *http.Request)) func(w http.ResponseWriter, req *http.Request) {
 	return func(w http.ResponseWriter, req *http.Request) {
 		handler(resolver, w, req)
@@ -53,6 +64,6 @@ func wrap(resolver AuthorityResolver, handler func(AuthorityResolver, http.Respo
 func NewApi(resolver AuthorityResolver) *http.ServeMux {
 	mux := http.NewServeMux()
 	mux.HandleFunc("/api/v1/query/subject", wrap(resolver, SubjectQueryHandler))
-
+	mux.HandleFunc("/api/v1/query/object", wrap(resolver, ObjectQueryHandler))
 	return mux
 }

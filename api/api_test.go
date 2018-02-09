@@ -6,6 +6,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
+	"github.com/blevesearch/bleve"
 	"github.com/stretchr/testify/assert"
 	"github.com/voidfiles/a/api"
 	"github.com/voidfiles/a/authority"
@@ -38,6 +39,10 @@ func (r *ResolverMock) FindLabelsForID(q string) ([]authority.PredicateObject, e
 			},
 		},
 	), nil
+}
+
+func (r *ResolverMock) FindIdsFromLabel(q string) (*bleve.SearchResult, error) {
+	return nil, nil
 }
 
 func TestQueryGraph(t *testing.T) {

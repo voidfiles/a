@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 
+	"github.com/blevesearch/bleve"
 	"github.com/cayleygraph/cayley/graph"
 	"github.com/cayleygraph/cayley/quad"
 	"github.com/cayleygraph/cayley/query"
@@ -103,6 +104,6 @@ func (r *Resolver) FindLabelsForID(id string) ([]PredicateObject, error) {
 	return results, nil
 }
 
-func (r *Resolver) FindIdsFromLabel(label string) (interface{}, error) {
-	return "", nil
+func (r *Resolver) FindIdsFromLabel(label string) (*bleve.SearchResult, error) {
+	return r.index.Query(label)
 }
