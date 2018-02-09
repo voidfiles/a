@@ -23,7 +23,7 @@ DATA_DIR        :=$(CW)/data
 MISC_DIR        :=$(CW)/_misc
 TRIPLES_DIR     :=$(CW)/_triples
 WORKDIR 	      :=$(CW)/_work
-DATA_URL        :=http://id.loc.gov/static/data/authoritieschildrensSubjects.nt.zip
+DATA_URL        :=http://id.loc.gov/static/data/authoritieschildrensSubjects.nt.skos.zip
 
 # Determine commands by looking into cmd/*
 COMMANDS=$(wildcard ${CW}/cmd/*)
@@ -41,6 +41,12 @@ download_lc_authority_data:
 	mkdir -p $(CACHE)
 	$(MISC_DIR)/download_urls.sh $(MISC_DIR)/lc_authority_urls.txt $(CACHE)
 
+download_small_data:
+	mkdir -p $(CACHE)/
+	cd $(CACHE) && curl -O -L $(DATA_URL)
+	mkdir -p $(TRIPLES_DIR)/
+	unzip "$(CACHE)/authorities*.zip" -d $(TRIPLES_DIR)/
+
 unzip_lc_authority_data:
 	mkdir -p $(TRIPLES_DIR)
 	unzip "$(CACHE)/authorities*.zip" -d $(TRIPLES_DIR)/
@@ -54,6 +60,8 @@ load_triples:
 		-c $(CW)/conf/cayley.yml || true
 
 	$(MISC_DIR)/load_triples.sh $(TRIPLES_DIR) $(CAYLEY_CMD) $(CW) $(DATA_DIR)/cayley.db
+
+small_build: download_small_data load_triples
 
 build-linux:
 	CGO_CFLAGS=$(CGO_CFLAGS) CGO_LDFLAGS=$(CGO_LDFLAGS) CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o $(WORKDIR)/$(PROJECT)_linux_amd64 $(GO_BUILD_FLAGS)
@@ -106,6 +114,8 @@ clean:
 	rm -fR $(DATA_DIR)
 	rm -fR $(BIN)
 	rm -fR $(CACHE)
+	rm -fR $(TRIPLES_DIR)
+	rm -fR $(WORKDIR)
 
 test:
 	CGO_ENABLED=0 go test $(GOPACKAGES)

@@ -94,6 +94,8 @@ func (i *Indexer) chunkQuadStore(chunkChan chan []search.QuadForIndex) {
 		quadChunk := chunker.Value()
 		chunkChan <- quadChunk
 	}
+
+	close(chunkChan)
 }
 
 func (i *Indexer) indexChunks(chunkChan chan []search.QuadForIndex) {
@@ -103,7 +105,7 @@ func (i *Indexer) indexChunks(chunkChan chan []search.QuadForIndex) {
 }
 
 func (i *Indexer) ProcessFullText() error {
-	chunkChan := make(chan []search.QuadForIndex, 5)
+	chunkChan := make(chan []search.QuadForIndex)
 	go i.chunkQuadStore(chunkChan)
 	i.indexChunks(chunkChan)
 
