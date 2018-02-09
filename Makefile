@@ -14,6 +14,8 @@ BUILDDATE      	:=$(shell date -u +%Y%m%d%H%M)
 CAYLEY_URL      :=https://github.com/cayleygraph/cayley/releases/download/v0.7.0/cayley_0.7.0_$(OS)_$(ARCH).tar.gz
 GO_LDFLAGS		  ?= -s -w
 GO_BUILD_FLAGS  :=-ldflags "${GOLDFLAGS} -X main.BuildVersion=${GITHASH} -X main.GitHash=${GITHASH} -X main.GitBranch=${GITBRANCH} -X main.BuildDate=${BUILDDATE}"
+CGO_LDFLAGS     :=-L/usr/local/opt/icu4c/lib
+CGO_CFLAGS      :=-I/usr/local/opt/icu4c/include
 ARTIFACT_NAME   :=$(PROJECT)-$(GITHASH).tar.gz
 ARTIFACT_DIR    :=$(PROJECT_DIR)/_artifacts
 WORKDIR         :=$(PROJECT_DIR)/_workdir
@@ -23,6 +25,11 @@ TRIPLES_DIR     :=$(CW)/_triples
 WORKDIR 	      :=$(CW)/_work
 DATA_URL        :=http://id.loc.gov/static/data/authoritieschildrensSubjects.nt.zip
 
+# Determine commands by looking into cmd/*
+COMMANDS=$(wildcard ${CW}/cmd/*)
+
+# Determine binary names by stripping out the dir names
+BINS=$(foreach cmd,${COMMANDS},$(notdir ${cmd}))
 
 CAYLEY_VERSION           := 0.7.0
 CAYLEY_ARTIFACT_NAME     := cayley_$(CAYLEY_VERSION)_$(OS)_$(ARCH)
@@ -49,10 +56,13 @@ load_triples:
 	$(MISC_DIR)/load_triples.sh $(TRIPLES_DIR) $(CAYLEY_CMD) $(CW) $(DATA_DIR)/cayley.db
 
 build-linux:
-	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o $(WORKDIR)/$(PROJECT)_linux_amd64 $(GO_BUILD_FLAGS)
+	CGO_CFLAGS=$(CGO_CFLAGS) CGO_LDFLAGS=$(CGO_LDFLAGS) CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o $(WORKDIR)/$(PROJECT)_linux_amd64 $(GO_BUILD_FLAGS)
+	$(foreach BIN, $(BINS), (cd cmd/$(BIN) && CGO_CFLAGS=$(CGO_CFLAGS) CGO_LDFLAGS=$(CGO_LDFLAGS) CGO_ENABLED=0 go build -o $(WORKDIR)/$(PROJECT)_$(BIN)_linux_amd64 $(GO_BUILD_FLAGS));)
 
 build:
-	CGO_ENABLED=0 go build -o $(WORKDIR)/$(PROJECT)_$(OS)_$(ARCH) $(GO_BUILD_FLAGS)
+	echo $(BINS)
+	CGO_CFLAGS=$(CGO_CFLAGS) CGO_LDFLAGS=$(CGO_LDFLAGS) CGO_ENABLED=0 go build -o $(WORKDIR)/$(PROJECT)_$(OS)_$(ARCH) $(GO_BUILD_FLAGS)
+	$(foreach BIN, $(BINS), (cd cmd/$(BIN) && CGO_CFLAGS=$(CGO_CFLAGS) CGO_LDFLAGS=$(CGO_LDFLAGS) CGO_ENABLED=0 go build -o $(WORKDIR)/$(PROJECT)_$(BIN)_$(OS)_$(ARCH) $(GO_BUILD_FLAGS));)
 
 
 dependencies:
@@ -103,5 +113,11 @@ test:
 test-race:
 	CGO_ENABLED=1 go test -race $(GOPACKAGES)
 
-run:
+run_cayley:
 	$(CAYLEY_CMD) http --host 127.0.0.1:64210 -d bolt -a $(DATA_DIR)/cayley.db
+
+run_boltdb:
+	$(WORKDIR)/a_$(OS)_$(ARCH) --db=bolt --dbpath=$(DATA_DIR)/cayley.db --indexpath=$(DATA_DIR)/search.db
+
+run_indexer_boltdb:
+	$(WORKDIR)/a_indexer_$(OS)_$(ARCH) --db=bolt --dbpath=$(DATA_DIR)/cayley.db  --indexpath=$(DATA_DIR)/search.db

@@ -2,6 +2,36 @@
 
 
 [[projects]]
+  name = "github.com/RoaringBitmap/roaring"
+  packages = ["."]
+  revision = "579959187317130bda443ec40f81c914e24b1396"
+  version = "v0.4.2"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/Smerity/govarint"
+  packages = ["."]
+  revision = "7265e41f48f15fd61751e16da866af3c704bb3ab"
+
+[[projects]]
+  name = "github.com/blevesearch/bleve"
+  packages = [".","analysis","analysis/analyzer/standard","analysis/datetime/flexible","analysis/datetime/optional","analysis/lang/en","analysis/token/keyword","analysis/token/lowercase","analysis/token/porter","analysis/token/stop","analysis/tokenizer/unicode","document","geo","index","index/scorch","index/scorch/mergeplan","index/scorch/segment","index/scorch/segment/mem","index/scorch/segment/zap","index/store","index/store/boltdb","index/store/gtreap","index/upsidedown","mapping","numeric","registry","search","search/collector","search/facet","search/highlight","search/highlight/format/html","search/highlight/fragmenter/simple","search/highlight/highlighter/html","search/highlight/highlighter/simple","search/query","search/scorer","search/searcher"]
+  revision = "0456569b6240ce13fc7bfed00e10b3f99e68a3e2"
+  version = "v0.6.0"
+
+[[projects]]
+  name = "github.com/blevesearch/go-porterstemmer"
+  packages = ["."]
+  revision = "b4dd94e38f29620fe0f97ae4b0f6994b0d5d75f0"
+  version = "v1.0.1"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/blevesearch/segment"
+  packages = ["."]
+  revision = "762005e7a34fd909a84586299f1dd457371d36ee"
+
+[[projects]]
   name = "github.com/boltdb/bolt"
   packages = ["."]
   revision = "2f1ce7a837dcb8da3ec595b1dac9d0632f0f99e8"
@@ -9,9 +39,15 @@
 
 [[projects]]
   name = "github.com/cayleygraph/cayley"
-  packages = ["clog","graph","graph/iterator","graph/kv","graph/kv/bolt","graph/log","graph/memstore","graph/path","graph/proto","graph/shape","graph/sql","graph/sql/postgres","internal/lru","quad","quad/pquads","quad/pquads/pio","query","query/gizmo","schema","voc","voc/rdf","voc/rdfs","voc/schema","writer"]
+  packages = ["clog","graph","graph/iterator","graph/kv","graph/kv/bolt","graph/log","graph/memstore","graph/path","graph/proto","graph/shape","internal/lru","quad","quad/pquads","quad/pquads/pio","query","query/gizmo","schema","voc","voc/rdf","voc/rdfs","voc/schema","writer"]
   revision = "6f8446e4171ebc84955dd0ff91927510ba1aee16"
   version = "v0.7.0"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/couchbase/vellum"
+  packages = [".","regexp","utf8"]
+  revision = "ed84a675e24ed0a0bf6859b1ddec7e7c858354bd"
 
 [[projects]]
   name = "github.com/davecgh/go-spew"
@@ -32,16 +68,46 @@
   revision = "eab79f83e840f5294250a3988a8037c476c9cdae"
 
 [[projects]]
+  branch = "master"
+  name = "github.com/edsrzf/mmap-go"
+  packages = ["."]
+  revision = "0bce6a6887123b67a60366d2c9fe2dfb74289d2e"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/glycerine/go-unsnap-stream"
+  packages = ["."]
+  revision = "62a9a9eb44fd8932157b1a8ace2149eff5971af6"
+
+[[projects]]
   name = "github.com/gogo/protobuf"
   packages = ["gogoproto","proto","protoc-gen-gogo/descriptor"]
   revision = "342cbe0a04158f6dcb03ca0079991a51a4248c02"
   version = "v0.5"
 
 [[projects]]
+  name = "github.com/golang/protobuf"
+  packages = ["proto"]
+  revision = "925541529c1fa6821df4e44ce2723319eb2be768"
+  version = "v1.0.0"
+
+[[projects]]
   branch = "master"
-  name = "github.com/lib/pq"
-  packages = [".","oid"]
-  revision = "19c8e9ad00952ce0c64489b60e8df88bb16dd514"
+  name = "github.com/golang/snappy"
+  packages = ["."]
+  revision = "553a641470496b2327abcac10b36396bd98e45c9"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/mschoch/smat"
+  packages = ["."]
+  revision = "90eadee771aeab36e8bf796039b8c261bebebe4f"
+
+[[projects]]
+  name = "github.com/philhofer/fwd"
+  packages = ["."]
+  revision = "bb6d471dc95d4fe11e432687f8b70ff496cf3136"
+  version = "v1.0.0"
 
 [[projects]]
   name = "github.com/pmezard/go-difflib"
@@ -50,16 +116,40 @@
   version = "v1.0.0"
 
 [[projects]]
+  branch = "master"
+  name = "github.com/steveyen/gtreap"
+  packages = ["."]
+  revision = "0abe01ef9be25c4aedc174758ec2d917314d6d70"
+
+[[projects]]
   name = "github.com/stretchr/testify"
   packages = ["assert"]
   revision = "12b6f73e6084dad08a7c6e575284b177ecafbc71"
   version = "v1.2.1"
 
 [[projects]]
+  name = "github.com/tinylib/msgp"
+  packages = ["msgp"]
+  revision = "b2b6a672cf1e5b90748f79b8b81fc8c5cf0571a1"
+  version = "1.0.2"
+
+[[projects]]
   branch = "master"
   name = "github.com/tylertreat/BoomFilters"
   packages = ["."]
   revision = "b282640b93f349cd208f8d5921df2cfaf5780ee2"
+
+[[projects]]
+  name = "github.com/willf/bitset"
+  packages = ["."]
+  revision = "d860f346b89450988a379d7d705e83c58d1ea227"
+  version = "v1.1.3"
+
+[[projects]]
+  branch = "master"
+  name = "golang.org/x/net"
+  packages = ["context"]
+  revision = "f5dfe339be1d06f81b22525fe34671ee7d2c8904"
 
 [[projects]]
   branch = "master"
@@ -76,6 +166,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "2c5d525403f778c11ff583cc075d156c2ae1f94901dd06601a2132f03fffd097"
+  inputs-digest = "629770e3754225857b67cd4bfdf6baa27f1b64647a10238a34b4ea5427b2ec67"
   solver-name = "gps-cdcl"
   solver-version = 1

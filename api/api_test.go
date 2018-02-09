@@ -2,17 +2,13 @@ package api_test
 
 import (
 	"fmt"
-	"log"
 	"net/http"
 	"net/http/httptest"
-	"net/url"
 	"testing"
 
-	"github.com/cayleygraph/cayley/graph"
-	"github.com/cayleygraph/cayley/quad"
-	"github.com/cayleygraph/cayley/writer"
 	"github.com/stretchr/testify/assert"
 	"github.com/voidfiles/a/api"
+	"github.com/voidfiles/a/authority"
 )
 
 func TestErrorFunc(t *testing.T) {
@@ -31,22 +27,26 @@ func TestWriteResult(t *testing.T) {
 	assert.Equal(t, response_expected, w.Body.String(), "Body should equal")
 }
 
-func TestNewSubjectQuery(t *testing.T) {
-	qs, _ := url.ParseQuery("subject=blah")
-	sq := api.NewSubjectQuery(qs)
-	assert.Equal(t, "blah", sq.Subject)
+type ResolverMock struct{}
+
+func (r *ResolverMock) FindLabelsForID(q string) ([]authority.PredicateObject, error) {
+	return []authority.PredicateObject(
+		[]authority.PredicateObject{
+			authority.PredicateObject{
+				Predicate: "follows",
+				Object:    "bob",
+			},
+		},
+	), nil
 }
 
 func TestQueryGraph(t *testing.T) {
-	qs, _ := graph.NewQuadStore("memstore", "", nil)
-	wq, err := writer.NewSingleReplication(qs, nil)
-	if err != nil {
-		log.Print(err)
-		t.Fail()
-	}
-	data := quad.Make("Alice", "follows", "bob", nil)
-	wq.AddQuad(data)
 	w := httptest.NewRecorder()
-	api.QueryGraph(qs, api.SubjectQuery{Subject: "Alice"}, w)
-	assert.Equal(t, "{\"result\":[{\"object\":\"bob\",\"predicate\":\"follows\"}]}\n", w.Body.String())
+	req := httptest.NewRequest(
+		http.MethodGet,
+		"https://example.com/api/v1/query/subject?subject=Alice",
+		nil,
+	)
+	api.SubjectQueryHandler(&ResolverMock{}, w, req)
+	assert.Equal(t, "{\"result\":[{\"Predicate\":\"follows\",\"Object\":\"bob\"}]}\n", w.Body.String())
 }

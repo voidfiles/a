@@ -3,13 +3,16 @@ package api
 import (
 	"encoding/json"
 	"io"
-	"log"
 	"net/http"
-	"net/url"
 
-	"github.com/cayleygraph/cayley/graph"
 	"github.com/cayleygraph/cayley/query"
+	"github.com/voidfiles/a/authority"
 )
+
+// AuthorityResolver provides the interface of authority.Resolver
+type AuthorityResolver interface {
+	FindLabelsForID(string) ([]authority.PredicateObject, error)
+}
 
 // ErrorFunc handles writing an error response
 func ErrorFunc(w query.ResponseWriter, err error) {
@@ -30,42 +33,26 @@ func WriteResult(w io.Writer, result interface{}) error {
 	return enc.Encode(SuccessQueryWrapper{result})
 }
 
-func QueryGraph(qs graph.QuadStore, q SubjectQuery, w http.ResponseWriter) {
-	executor := NewQueryExecutor(qs)
-	output, err := executor.Execute(q)
+// SubjectQueryHandler provides an HTTP Api to resolver.FindLabelsForID
+func SubjectQueryHandler(resolver AuthorityResolver, w http.ResponseWriter, req *http.Request) {
+	resp, err := resolver.FindLabelsForID(req.URL.Query().Get("subject"))
 	if err != nil {
 		ErrorFunc(w, err)
 	}
-
-	_ = WriteResult(w, output)
+	_ = WriteResult(w, resp)
 }
 
-type SubjectQuery struct {
-	Subject string
-}
-
-func NewSubjectQuery(qs url.Values) SubjectQuery {
-	return SubjectQuery{
-		Subject: qs.Get("subject"),
-	}
-}
-
-func SubjectQueryHandler(qs graph.QuadStore, w http.ResponseWriter, req *http.Request) {
-	graphQuery := NewSubjectQuery(req.URL.Query())
-	log.Printf("Looking for blah %s", graphQuery)
-	QueryGraph(qs, graphQuery, w)
-}
-
-func wrap(qs graph.QuadStore, handler func(graph.QuadStore, http.ResponseWriter, *http.Request)) func(w http.ResponseWriter, req *http.Request) {
+func wrap(resolver AuthorityResolver, handler func(AuthorityResolver, http.ResponseWriter, *http.Request)) func(w http.ResponseWriter, req *http.Request) {
 	return func(w http.ResponseWriter, req *http.Request) {
-		handler(qs, w, req)
+		handler(resolver, w, req)
 		return
 	}
 }
 
-func NewApi(qs graph.QuadStore) *http.ServeMux {
+// NewApi creates an http handler
+func NewApi(resolver AuthorityResolver) *http.ServeMux {
 	mux := http.NewServeMux()
-	mux.HandleFunc("/api/v1/query/subject", wrap(qs, SubjectQueryHandler))
+	mux.HandleFunc("/api/v1/query/subject", wrap(resolver, SubjectQueryHandler))
 
 	return mux
 }
