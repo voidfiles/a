@@ -61,7 +61,7 @@ load_triples:
 
 	$(MISC_DIR)/load_triples.sh $(TRIPLES_DIR) $(CAYLEY_CMD) $(CW) $(DATA_DIR)/cayley.db
 
-small_build: download_small_data load_triples
+small_build: download_small_data load_triples run_indexer_boltdb
 
 build-linux:
 	CGO_CFLAGS=$(CGO_CFLAGS) CGO_LDFLAGS=$(CGO_LDFLAGS) CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o $(WORKDIR)/$(PROJECT)_linux_amd64 $(GO_BUILD_FLAGS)
@@ -106,7 +106,7 @@ install:
 	echo -n "Installed cayley: " && $(BIN)/cayley version
 	echo "Done..."
 
-init: install
+init: dependencies install
 
 data: download_data unzip_data load_data
 

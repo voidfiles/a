@@ -12,38 +12,49 @@ A project to produce an easy to use authority server
 
 ## Getting Started
 
-To download some data and get started. This will download and initialize a database with the
-LC Children's Subject Headings. It's just a small database.
+This will install dependencies and cayley. You'll be able to run tests and
+build the codebase afterwards.
 
-```
+```bash
 make init
 ```
 
-To run the container run
+Run the tests
 
-```
-make run
-```
-
-To stop the containers
-
-```
-make stop
+```bash
+make test
 ```
 
-Once this is up and running you should be able to see a server running at http://localhost:64210/
+To build
 
-To see the logs of the server
+```bash
+make build
+```
+
+Now, you can find `./_work/a_darmin_amd64` or something like it.
+
+To kick the tires start with a small data set. This will download and load
+the LOC childrens subjects headers.
+
+```bash
+make small_build
+```
+
+
+## Running locally
 
 ```
-make logs
+make build
+make run_boltdb
 ```
+
+You should now have a server running on localhost.
 
 ## Small Data Queries
 
 http://localhost:8080/api/v1/query/subject?subject=%3Chttp://id.loc.gov/authorities/childrensSubjects/sj00001253%3E
 
-http://localhost:8080/api/v1/query/object?query=Ceratopsians
+http://localhost:8080/api/v1/query/object?object=Ceratopsians
 
 
 ## Fun Queries
