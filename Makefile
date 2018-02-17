@@ -43,6 +43,7 @@ dependencies:
 	go get github.com/alecthomas/gometalinter
 	go get github.com/golang/dep/cmd/dep
 	go get github.com/stretchr/testify
+	go get github.com/jstemmer/go-junit-report
 	dep ensure
 	gometalinter --install
 
