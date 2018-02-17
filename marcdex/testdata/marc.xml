@@ -1,0 +1,675 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<collection xmlns="http://www.loc.gov/MARC21/slim">
+<record>
+  <leader>01390cz  a2200193n  4500</leader>
+  <controlfield tag="001">gf2010025067</controlfield>
+  <controlfield tag="003">DLC</controlfield>
+  <controlfield tag="005">20120330074621.0</controlfield>
+  <controlfield tag="008">111019|| anznnbabn          |a ana     c</controlfield>
+  <datafield tag="010" ind1=" " ind2=" ">
+    <subfield code="a">gf2010025067</subfield>
+  </datafield>
+  <datafield tag="040" ind1=" " ind2=" ">
+    <subfield code="a">WaU</subfield>
+    <subfield code="b">eng</subfield>
+    <subfield code="c">DLC</subfield>
+    <subfield code="f">lcgft</subfield>
+    <subfield code="d">DLC</subfield>
+  </datafield>
+  <datafield tag="155" ind1=" " ind2=" ">
+    <subfield code="a">Gravity anomaly maps</subfield>
+  </datafield>
+  <datafield tag="455" ind1=" " ind2=" ">
+    <subfield code="a">Gravity maps</subfield>
+  </datafield>
+  <datafield tag="555" ind1=" " ind2=" ">
+    <subfield code="w">g</subfield>
+    <subfield code="a">Maps</subfield>
+  </datafield>
+  <datafield tag="670" ind1=" " ind2=" ">
+    <subfield code="a">Work cat.: Thompson, G.A. Aeromagnetic and Bouguer gravity map of Twin Sisters dunite, northwestern Washington, 1973.</subfield>
+  </datafield>
+  <datafield tag="670" ind1=" " ind2=" ">
+    <subfield code="a">GRACE gravity map image gallery, via WWW, July 16, 2010.</subfield>
+  </datafield>
+  <datafield tag="670" ind1=" " ind2=" ">
+    <subfield code="a">Introduction to potential fields: gravity, 1997:</subfield>
+    <subfield code="b">p. 2 (a gravity map is made using numerous gravity measurements across the area of interest ... gravity measurements are often processed to a complete-Bouguer or isostatic gravity anomaly. These data are then gridded, so that the randomly spaced data are converted to a representation of the gravity field at equally spaced locations)</subfield>
+  </datafield>
+  <datafield tag="670" ind1=" " ind2=" ">
+    <subfield code="a">Gravity anomaly maps, via Wisconsin State Cartographer&apos;s Office website, July 16, 2010</subfield>
+    <subfield code="b">(Gravity anomaly maps depict the difference between theoretical computed gravity values and observed gravity values for a region of the earth&apos;s crust)</subfield>
+  </datafield>
+  <datafield tag="670" ind1=" " ind2=" ">
+    <subfield code="a">Smith, W.H.F. Global seafloor topography from satellite altimetry, via NOAA National Geophysical Data Center website, July 16, 2010</subfield>
+    <subfield code="b">(gravity maps are useful in revealing the geology of the sea floor)</subfield>
+  </datafield>
+</record>
+<record>
+  <leader>01563nz  a2200205n  4500</leader>
+  <controlfield tag="001">gf2011025006</controlfield>
+  <controlfield tag="003">DLC</controlfield>
+  <controlfield tag="005">20111210074811.0</controlfield>
+  <controlfield tag="008">110928|| anznnbabn          |a ana     c</controlfield>
+  <datafield tag="010" ind1=" " ind2=" ">
+    <subfield code="a">gf2011025006</subfield>
+  </datafield>
+  <datafield tag="040" ind1=" " ind2=" ">
+    <subfield code="a">WaU</subfield>
+    <subfield code="b">eng</subfield>
+    <subfield code="c">DLC</subfield>
+    <subfield code="f">lcgft</subfield>
+  </datafield>
+  <datafield tag="155" ind1=" " ind2=" ">
+    <subfield code="a">Gay pornographic films</subfield>
+  </datafield>
+  <datafield tag="455" ind1=" " ind2=" ">
+    <subfield code="a">Gay porn films</subfield>
+  </datafield>
+  <datafield tag="455" ind1=" " ind2=" ">
+    <subfield code="a">Gay sex films</subfield>
+  </datafield>
+  <datafield tag="555" ind1=" " ind2=" ">
+    <subfield code="w">g</subfield>
+    <subfield code="a">Pornographic films</subfield>
+  </datafield>
+  <datafield tag="670" ind1=" " ind2=" ">
+    <subfield code="a">Work cat.: Gayvideos.nl website, Jan. 27, 2011:</subfield>
+    <subfield code="b">home page (gay sex movies and gay porn videos)</subfield>
+  </datafield>
+  <datafield tag="670" ind1=" " ind2=" ">
+    <subfield code="a">Cool gay movies website, Jan. 27, 2011:</subfield>
+    <subfield code="b">HTML header (gay porn videos; gay sex movies)</subfield>
+  </datafield>
+  <datafield tag="670" ind1=" " ind2=" ">
+    <subfield code="a">Wikipedia, Jan. 27, 2011:</subfield>
+    <subfield code="b">List of male performers in gay porn films (Gay pornographic films trace their roots to the Athletic Model Guild, founded in Los Angeles in 1945, which produced photographs and still images later turned into films and porn loops; gay porn film)</subfield>
+  </datafield>
+  <datafield tag="670" ind1=" " ind2=" ">
+    <subfield code="a">GLBTQ: an encyclopedia of gay, lesbian, bisexual, transgender &amp; queer culture, via WWW, Jan. 27, 2011:</subfield>
+    <subfield code="b">Pornographic Film and Video: Gay Male (Pornographic film and video have played an important role in gay male culture; As with straight pornography, gay male pornography can be divided into two categories, hardcore and softcore; gay male film and video pornography; gay pornographic films; gay male pornographic films; Before The Boys in the Sand, filmed images of same-sex activity were limited to a few examples in stag films (some dating to early in the twentieth century); gay video; gay video porn)</subfield>
+  </datafield>
+  <datafield tag="670" ind1=" " ind2=" ">
+    <subfield code="a">Bijou Video home page, Jan. 27, 2011:</subfield>
+    <subfield code="b">HTML header (gay adult films)</subfield>
+  </datafield>
+</record>
+<record>
+  <leader>01556cz  a2200229n  4500</leader>
+  <controlfield tag="001">gf2011026004</controlfield>
+  <controlfield tag="003">DLC</controlfield>
+  <controlfield tag="005">20110518074619.0</controlfield>
+  <controlfield tag="008">110502 | anznnbabn          |a ana      </controlfield>
+  <datafield tag="010" ind1=" " ind2=" ">
+    <subfield code="a">gf2011026004</subfield>
+    <subfield code="z">sh2008025611</subfield>
+  </datafield>
+  <datafield tag="040" ind1=" " ind2=" ">
+    <subfield code="a">DLC</subfield>
+    <subfield code="b">eng</subfield>
+    <subfield code="c">DLC</subfield>
+    <subfield code="f">lcgft</subfield>
+  </datafield>
+  <datafield tag="155" ind1=" " ind2=" ">
+    <subfield code="a">Abstract films</subfield>
+  </datafield>
+  <datafield tag="455" ind1=" " ind2=" ">
+    <subfield code="a">Abstract animation films</subfield>
+  </datafield>
+  <datafield tag="455" ind1=" " ind2=" ">
+    <subfield code="a">Abstract live action films</subfield>
+  </datafield>
+  <datafield tag="455" ind1=" " ind2=" ">
+    <subfield code="a">Concrete films</subfield>
+  </datafield>
+  <datafield tag="455" ind1=" " ind2=" ">
+    <subfield code="a">Nonobjective films</subfield>
+  </datafield>
+  <datafield tag="455" ind1=" " ind2=" ">
+    <subfield code="a">Nonrepresentational films</subfield>
+  </datafield>
+  <datafield tag="555" ind1=" " ind2=" ">
+    <subfield code="w">g</subfield>
+    <subfield code="a">Experimental films</subfield>
+  </datafield>
+  <datafield tag="555" ind1=" " ind2=" ">
+    <subfield code="a">Animated films</subfield>
+  </datafield>
+  <datafield tag="670" ind1=" " ind2=" ">
+    <subfield code="a">Moving image genre-form guide online, June 4, 2008</subfield>
+    <subfield code="b">(Abstract live action: work that fragments or otherwise presents live objects so they appear to be abstract; Abstract animation: type of animation without narrative, concentrating on abstract visuals)</subfield>
+  </datafield>
+  <datafield tag="670" ind1=" " ind2=" ">
+    <subfield code="a">Lopez, D. Films by genre, 1993:</subfield>
+    <subfield code="b">p. 2 (Abstract films; Concrete films; Nonobjective films: abstract films avoid narrative and instead convey sensitive impressions and emotions by way of color, rhythm and movement...They include animated films consisting of drawings, splashes of color, lines and shapes...computer films...abstraction [is] also achieved by working on the film itself by scratching, drawing, or painting on its surface. Abstract films are also made by photographing objects in the usual manner...also refers to any nonrepresentational film)</subfield>
+  </datafield>
+  <datafield tag="680" ind1=" " ind2=" ">
+    <subfield code="i">This heading is used as a genre/form heading for nonrepresentational films that avoid narrative and instead convey impressions and emotions by way of color, rhythm and movement.</subfield>
+  </datafield>
+</record>
+<record>
+  <leader>03231cz  a2200253n  4500</leader>
+  <controlfield tag="001">gf2011026005</controlfield>
+  <controlfield tag="003">DLC</controlfield>
+  <controlfield tag="005">20110518074620.0</controlfield>
+  <controlfield tag="008">110502 | anznnbabn          |a ana      </controlfield>
+  <datafield tag="010" ind1=" " ind2=" ">
+    <subfield code="a">gf2011026005</subfield>
+    <subfield code="z">sh2007004004</subfield>
+  </datafield>
+  <datafield tag="040" ind1=" " ind2=" ">
+    <subfield code="a">DLC</subfield>
+    <subfield code="b">eng</subfield>
+    <subfield code="c">DLC</subfield>
+    <subfield code="f">lcgft</subfield>
+  </datafield>
+  <datafield tag="155" ind1=" " ind2=" ">
+    <subfield code="a">Action and adventure films</subfield>
+  </datafield>
+  <datafield tag="455" ind1=" " ind2=" ">
+    <subfield code="a">Action-adventure films</subfield>
+  </datafield>
+  <datafield tag="455" ind1=" " ind2=" ">
+    <subfield code="a">Action films</subfield>
+  </datafield>
+  <datafield tag="455" ind1=" " ind2=" ">
+    <subfield code="a">Action movies</subfield>
+  </datafield>
+  <datafield tag="455" ind1=" " ind2=" ">
+    <subfield code="a">Adventure and action films</subfield>
+  </datafield>
+  <datafield tag="455" ind1=" " ind2=" ">
+    <subfield code="a">Adventure films</subfield>
+  </datafield>
+  <datafield tag="455" ind1=" " ind2=" ">
+    <subfield code="a">Adventure movies</subfield>
+  </datafield>
+  <datafield tag="555" ind1=" " ind2=" ">
+    <subfield code="w">g</subfield>
+    <subfield code="a">Motion pictures</subfield>
+  </datafield>
+  <datafield tag="555" ind1=" " ind2=" ">
+    <subfield code="a">Swashbuckler films</subfield>
+  </datafield>
+  <datafield tag="670" ind1=" " ind2=" ">
+    <subfield code="a">Filmsite WWW site, May 21, 2008</subfield>
+    <subfield code="b">(Action films have tremendous impact, continuous high energy, lots of physical stunts and activity, possibly extended chase scenes, races, rescues, battles, martial arts, mountains and mountaineering, destructive disasters (floods, explosions, natural disasters, fires, etc.), fights, escapes, non-stop motion, spectacular rhythm and pacing, and adventurous heroes - all designed for pure audience escapism with the action sequences at the core of the film; The main action centers around a male action hero or protagonist; Adventure films are exciting stories, with new experiences or exotic locales. Adventure films are very similar to the action film genre, in that they are designed to provide an action-filled, energetic experience for the film viewer. Rather than the predominant emphasis on violence and fighting that is found in action films, however, the viewer of adventure films can live vicariously through the travels, conquests, explorations, creation of empires, struggles and situations that confront the main characters, actual historical figures or protagonists)</subfield>
+  </datafield>
+  <datafield tag="670" ind1=" " ind2=" ">
+    <subfield code="a">GSAFD, 2000</subfield>
+    <subfield code="b">(Adventure films. UF Swashbucklers, Thrillers)</subfield>
+  </datafield>
+  <datafield tag="670" ind1=" " ind2=" ">
+    <subfield code="a">Yee, M.M. Moving image materials, 1988</subfield>
+    <subfield code="b">(Swashbucklers. Use for fictional genre films in which the protagonist, in period costume, fights, usually with his sword, for a noble cause. RT Epics; Thrillers: USE Crime drama, Disaster drama, Horror drama, Spy drama)</subfield>
+  </datafield>
+  <datafield tag="670" ind1=" " ind2=" ">
+    <subfield code="a">The moving image genre-form guide, via WWW, Mar. 6, 2001</subfield>
+    <subfield code="b">(Adventure. Fictional work set in a historical period, from the Middle Ages through the 19th century, typically dramatizing the exploits of actual historical figures or incidents, including kings and battles, rebellion, piracy and the Spanish Main, travel, exploration, and the creation of empires. Larger ideological issues are mythicized and conflicts personalized over historical accuracy. Adventure usually involves a courageous, altruistic and patriotic hero willing to fight for his beliefs, who becomes involved in a struggle for freedom by overcoming oppression and helping to create a more just society. Used for Swashbuckler. Other genres often confused with Adventure include Ancient world, Animal, Aviation, Crime, Thriller, Science fiction, Survival, and War; for a comprehensive list, examine the see references under Action-adventure; Action-adventure see such genres as Adventure, Ancient world, Animal, Aviation, Caper, Crime, Disaster, Espionage, Fantasy, Gangster, Jungle, Martial arts, Mystery, Police, Prehistoric, Prison, Science fiction, Singing cowboy, Sports, Survival, Thriller, War, Western, Yukon)</subfield>
+  </datafield>
+</record>
+<record>
+  <leader>00789cz  a2200193n  4500</leader>
+  <controlfield tag="001">gf2011026006</controlfield>
+  <controlfield tag="003">DLC</controlfield>
+  <controlfield tag="005">20110518074620.0</controlfield>
+  <controlfield tag="008">110502 | anznnbabn          |a ana      </controlfield>
+  <datafield tag="010" ind1=" " ind2=" ">
+    <subfield code="a">gf2011026006</subfield>
+    <subfield code="z">sh2009025031</subfield>
+  </datafield>
+  <datafield tag="040" ind1=" " ind2=" ">
+    <subfield code="a">DLC</subfield>
+    <subfield code="b">eng</subfield>
+    <subfield code="c">DLC</subfield>
+    <subfield code="f">lcgft</subfield>
+  </datafield>
+  <datafield tag="155" ind1=" " ind2=" ">
+    <subfield code="a">Action and adventure television programs</subfield>
+  </datafield>
+  <datafield tag="455" ind1=" " ind2=" ">
+    <subfield code="a">Action television programs</subfield>
+  </datafield>
+  <datafield tag="455" ind1=" " ind2=" ">
+    <subfield code="a">Adventure and action television programs</subfield>
+  </datafield>
+  <datafield tag="455" ind1=" " ind2=" ">
+    <subfield code="a">Adventure television programs</subfield>
+  </datafield>
+  <datafield tag="555" ind1=" " ind2=" ">
+    <subfield code="w">g</subfield>
+    <subfield code="a">Television programs</subfield>
+  </datafield>
+  <datafield tag="670" ind1=" " ind2=" ">
+    <subfield code="a">Work cat.: Treasure of the peacock&apos;s eye [VR] 1999</subfield>
+    <subfield code="b">(Originally broadcast on the Family Channel in 1995)</subfield>
+  </datafield>
+  <datafield tag="670" ind1=" " ind2=" ">
+    <subfield code="a">Taves, B. The moving image genre-form guide, viewed online, Jan. 30, 2009</subfield>
+    <subfield code="b">(Adventure (genre))</subfield>
+  </datafield>
+  <datafield tag="670" ind1=" " ind2=" ">
+    <subfield code="a">LCSH, Jan. 30, 2009</subfield>
+    <subfield code="b">(hdg.: Action and adventure television programs)</subfield>
+  </datafield>
+</record>
+<record>
+  <leader>01499cz  a2200229n  4500</leader>
+  <controlfield tag="001">gf2011026007</controlfield>
+  <controlfield tag="003">DLC</controlfield>
+  <controlfield tag="005">20110518074620.0</controlfield>
+  <controlfield tag="008">110502 | anznnbabn          |a ana      </controlfield>
+  <datafield tag="010" ind1=" " ind2=" ">
+    <subfield code="a">gf2011026007</subfield>
+    <subfield code="z">sh2007025011</subfield>
+  </datafield>
+  <datafield tag="040" ind1=" " ind2=" ">
+    <subfield code="a">DLC</subfield>
+    <subfield code="b">eng</subfield>
+    <subfield code="c">DLC</subfield>
+    <subfield code="d">DLC</subfield>
+    <subfield code="f">lcgft</subfield>
+  </datafield>
+  <datafield tag="155" ind1=" " ind2=" ">
+    <subfield code="a">Actualities (Motion pictures)</subfield>
+  </datafield>
+  <datafield tag="455" ind1=" " ind2=" ">
+    <subfield code="a">Actualités (Motion pictures)</subfield>
+  </datafield>
+  <datafield tag="455" ind1=" " ind2=" ">
+    <subfield code="a">Actuality films</subfield>
+  </datafield>
+  <datafield tag="555" ind1=" " ind2=" ">
+    <subfield code="w">g</subfield>
+    <subfield code="a">Short films</subfield>
+  </datafield>
+  <datafield tag="555" ind1=" " ind2=" ">
+    <subfield code="w">g</subfield>
+    <subfield code="a">Silent films</subfield>
+  </datafield>
+  <datafield tag="555" ind1=" " ind2=" ">
+    <subfield code="w">g</subfield>
+    <subfield code="a">Nonfiction films</subfield>
+  </datafield>
+  <datafield tag="555" ind1=" " ind2=" ">
+    <subfield code="a">Documentary films</subfield>
+  </datafield>
+  <datafield tag="555" ind1=" " ind2=" ">
+    <subfield code="a">Newsreels</subfield>
+  </datafield>
+  <datafield tag="670" ind1=" " ind2=" ">
+    <subfield code="a">Yee, M.M. Moving image materials, 1988 (Actualities; use for early, usually short silent films in which the cameria was positioned to record events or everyday life)</subfield>
+  </datafield>
+  <datafield tag="670" ind1=" " ind2=" ">
+    <subfield code="a">Lopez, D. Films by genre, c1993</subfield>
+    <subfield code="b">(Actuality (Actualite, Actualities, Actuality film, Documentaire, Educational, Interest film, News film, News item, Topical) the filming of &quot;actual&quot; events or the normal activities of people at work or at leisure; the actuality film is an early form of the documentary film; an actuality shows something that happened at the time of filming; a topical film records an event that is newsworthy; an interest film implies some measure of interpretation of its subject by the maker of the film)</subfield>
+  </datafield>
+  <datafield tag="680" ind1=" " ind2=" ">
+    <subfield code="i">This heading is used as a genre/form heading for short, unedited, silent films, primarily from the period of early cinema, that portray daily life or specific events or occurrences as filmed by a camera in a fixed location without commentary.</subfield>
+  </datafield>
+</record>
+<record>
+  <leader>01417cz  a2200265n  4500</leader>
+  <controlfield tag="001">gf2011026029</controlfield>
+  <controlfield tag="003">DLC</controlfield>
+  <controlfield tag="005">20110518074621.0</controlfield>
+  <controlfield tag="008">110504|| anznnbabn          |a ana      </controlfield>
+  <datafield tag="010" ind1=" " ind2=" ">
+    <subfield code="a">gf2011026029</subfield>
+    <subfield code="z">sh2010025076</subfield>
+  </datafield>
+  <datafield tag="040" ind1=" " ind2=" ">
+    <subfield code="a">DLC</subfield>
+    <subfield code="b">eng</subfield>
+    <subfield code="c">DLC</subfield>
+    <subfield code="f">lcgft</subfield>
+  </datafield>
+  <datafield tag="155" ind1=" " ind2=" ">
+    <subfield code="a">Administrative decisions</subfield>
+  </datafield>
+  <datafield tag="455" ind1=" " ind2=" ">
+    <subfield code="a">Administrative agency decisions</subfield>
+  </datafield>
+  <datafield tag="455" ind1=" " ind2=" ">
+    <subfield code="a">Administrative opinions</subfield>
+  </datafield>
+  <datafield tag="455" ind1=" " ind2=" ">
+    <subfield code="a">Administrative rulings (Decisions)</subfield>
+  </datafield>
+  <datafield tag="455" ind1=" " ind2=" ">
+    <subfield code="a">Agency decisions</subfield>
+  </datafield>
+  <datafield tag="455" ind1=" " ind2=" ">
+    <subfield code="a">Decisions, Administrative</subfield>
+  </datafield>
+  <datafield tag="455" ind1=" " ind2=" ">
+    <subfield code="a">Opinions, Administrative</subfield>
+  </datafield>
+  <datafield tag="455" ind1=" " ind2=" ">
+    <subfield code="a">Regulatory agency decisions</subfield>
+  </datafield>
+  <datafield tag="455" ind1=" " ind2=" ">
+    <subfield code="a">Rulings, Administrative (Decisions)</subfield>
+  </datafield>
+  <datafield tag="555" ind1=" " ind2=" ">
+    <subfield code="w">g</subfield>
+    <subfield code="a">Law materials</subfield>
+  </datafield>
+  <datafield tag="555" ind1=" " ind2=" ">
+    <subfield code="a">Court decisions and opinions</subfield>
+  </datafield>
+  <datafield tag="670" ind1=" " ind2=" ">
+    <subfield code="a">Genre/form terms for law materials [report prepared by the Technical Services Special Interest Section of AALL], 2010:</subfield>
+    <subfield code="b">Administrative decisions (This heading is used as a genre/form heading for decisions and opinions of administrative agencies. Reported and unreported court decisions, opinions, judgments, etc. are entered under Court decisions and opinions. Example: Federal Communications Commission reports)</subfield>
+  </datafield>
+  <datafield tag="680" ind1=" " ind2=" ">
+    <subfield code="i">This heading is used as a genre/form heading for decisions and opinions of administrative agencies. Reported and unreported court decisions, opinions, judgments, etc. are entered under</subfield>
+    <subfield code="a">Court decisions and opinions.</subfield>
+  </datafield>
+  <datafield tag="681" ind1=" " ind2=" ">
+    <subfield code="i">Note under</subfield>
+    <subfield code="a">Court decisions and opinions</subfield>
+  </datafield>
+</record>
+<record>
+  <leader>01413cz  a2200349n  4500</leader>
+  <controlfield tag="001">gf2011026030</controlfield>
+  <controlfield tag="003">DLC</controlfield>
+  <controlfield tag="005">20110518074621.0</controlfield>
+  <controlfield tag="008">110504|| anznnbabn          |a ana      </controlfield>
+  <datafield tag="010" ind1=" " ind2=" ">
+    <subfield code="a">gf2011026030</subfield>
+    <subfield code="z">sh2010025077</subfield>
+  </datafield>
+  <datafield tag="040" ind1=" " ind2=" ">
+    <subfield code="a">DLC</subfield>
+    <subfield code="b">eng</subfield>
+    <subfield code="c">DLC</subfield>
+    <subfield code="f">lcgft</subfield>
+  </datafield>
+  <datafield tag="155" ind1=" " ind2=" ">
+    <subfield code="a">Administrative regulations</subfield>
+  </datafield>
+  <datafield tag="455" ind1=" " ind2=" ">
+    <subfield code="a">Administrative agency regulations</subfield>
+  </datafield>
+  <datafield tag="455" ind1=" " ind2=" ">
+    <subfield code="a">Administrative codes</subfield>
+  </datafield>
+  <datafield tag="455" ind1=" " ind2=" ">
+    <subfield code="a">Administrative rules (Regulations)</subfield>
+  </datafield>
+  <datafield tag="455" ind1=" " ind2=" ">
+    <subfield code="a">Codes, Administrative</subfield>
+  </datafield>
+  <datafield tag="455" ind1=" " ind2=" ">
+    <subfield code="a">Delegated legislation</subfield>
+  </datafield>
+  <datafield tag="455" ind1=" " ind2=" ">
+    <subfield code="a">Instruments, Statutory</subfield>
+  </datafield>
+  <datafield tag="455" ind1=" " ind2=" ">
+    <subfield code="a">Legislation, Subordinate</subfield>
+  </datafield>
+  <datafield tag="455" ind1=" " ind2=" ">
+    <subfield code="a">Legislation, Subsidiary</subfield>
+  </datafield>
+  <datafield tag="455" ind1=" " ind2=" ">
+    <subfield code="a">Quasi-legislation</subfield>
+  </datafield>
+  <datafield tag="455" ind1=" " ind2=" ">
+    <subfield code="a">Regulations, Administrative</subfield>
+  </datafield>
+  <datafield tag="455" ind1=" " ind2=" ">
+    <subfield code="a">Rules, Administrative (Regulations)</subfield>
+  </datafield>
+  <datafield tag="455" ind1=" " ind2=" ">
+    <subfield code="a">Rules and orders, Statutory</subfield>
+  </datafield>
+  <datafield tag="455" ind1=" " ind2=" ">
+    <subfield code="a">Statutory instruments</subfield>
+  </datafield>
+  <datafield tag="455" ind1=" " ind2=" ">
+    <subfield code="a">Statutory rules and orders</subfield>
+  </datafield>
+  <datafield tag="455" ind1=" " ind2=" ">
+    <subfield code="a">Subordinate legislation</subfield>
+  </datafield>
+  <datafield tag="455" ind1=" " ind2=" ">
+    <subfield code="a">Subsidiary legislation</subfield>
+  </datafield>
+  <datafield tag="555" ind1=" " ind2=" ">
+    <subfield code="w">g</subfield>
+    <subfield code="a">Law materials</subfield>
+  </datafield>
+  <datafield tag="555" ind1=" " ind2=" ">
+    <subfield code="a">Executive orders</subfield>
+  </datafield>
+  <datafield tag="555" ind1=" " ind2=" ">
+    <subfield code="a">Statutes and codes</subfield>
+  </datafield>
+  <datafield tag="670" ind1=" " ind2=" ">
+    <subfield code="a">Genre/form terms for law materials [report prepared by the Technical Services Special Interest Section of AALL], 2010:</subfield>
+    <subfield code="b">Administrative regulations (This heading is used as a genre/form heading for rules made by administrative agencies under the authority delegated by statute. Examples:  1. Code of federal regulations 2. Halsbury&apos;s statutory instruments)</subfield>
+  </datafield>
+</record>
+<record>
+  <leader>00710cz  a2200157n  4500</leader>
+  <controlfield tag="001">gf2011026031</controlfield>
+  <controlfield tag="003">DLC</controlfield>
+  <controlfield tag="005">20110518074622.0</controlfield>
+  <controlfield tag="008">110504|| anznnbabn          |a ana      </controlfield>
+  <datafield tag="010" ind1=" " ind2=" ">
+    <subfield code="a">gf2011026031</subfield>
+    <subfield code="z">sh2007025594</subfield>
+  </datafield>
+  <datafield tag="040" ind1=" " ind2=" ">
+    <subfield code="a">DLC</subfield>
+    <subfield code="b">eng</subfield>
+    <subfield code="c">DLC</subfield>
+    <subfield code="f">lcgft</subfield>
+  </datafield>
+  <datafield tag="155" ind1=" " ind2=" ">
+    <subfield code="a">Adventure radio programs</subfield>
+  </datafield>
+  <datafield tag="455" ind1=" " ind2=" ">
+    <subfield code="a">Radio adventure programs</subfield>
+  </datafield>
+  <datafield tag="555" ind1=" " ind2=" ">
+    <subfield code="w">g</subfield>
+    <subfield code="a">Radio programs</subfield>
+  </datafield>
+  <datafield tag="670" ind1=" " ind2=" ">
+    <subfield code="a">Radio form/genre terms guide, 1998</subfield>
+    <subfield code="b">(Adventures: Fictional programs that dramatize the exciting and usually hazardous exploits of a person or persons; sometimes set in a particular historical period. Examples: The count of Monte Cristo, Superman)</subfield>
+  </datafield>
+  <datafield tag="670" ind1=" " ind2=" ">
+    <subfield code="a">GSAFD via WWW, Nov. 20, 2007</subfield>
+    <subfield code="b">(Adventure radio programs; UF Swashbucklers, Thrillers)</subfield>
+  </datafield>
+</record>
+<record>
+  <leader>01068cz  a2200181n  4500</leader>
+  <controlfield tag="001">gf2011026032</controlfield>
+  <controlfield tag="003">DLC</controlfield>
+  <controlfield tag="005">20111027074627.0</controlfield>
+  <controlfield tag="008">110504|| anznnbabn          |a ana      </controlfield>
+  <datafield tag="010" ind1=" " ind2=" ">
+    <subfield code="a">gf2011026032</subfield>
+    <subfield code="z">sh2010025013</subfield>
+  </datafield>
+  <datafield tag="040" ind1=" " ind2=" ">
+    <subfield code="a">DLC</subfield>
+    <subfield code="b">eng</subfield>
+    <subfield code="c">DLC</subfield>
+    <subfield code="f">lcgft</subfield>
+  </datafield>
+  <datafield tag="155" ind1=" " ind2=" ">
+    <subfield code="a">Aerial photographs</subfield>
+  </datafield>
+  <datafield tag="455" ind1=" " ind2=" ">
+    <subfield code="a">Photographs, Aerial</subfield>
+  </datafield>
+  <datafield tag="555" ind1=" " ind2=" ">
+    <subfield code="w">g</subfield>
+    <subfield code="a">Cartographic materials</subfield>
+  </datafield>
+  <datafield tag="670" ind1=" " ind2=" ">
+    <subfield code="a">Glossary of the mapping sciences, 1994:</subfield>
+    <subfield code="b">photograph, aerial (a photograph taken from the air)</subfield>
+  </datafield>
+  <datafield tag="670" ind1=" " ind2=" ">
+    <subfield code="a">Cartographic materials, 2002, 2005 update via Cataloger&apos;s Desktop March 23, 2010:</subfield>
+    <subfield code="b">glossary (aerial photograph: Any photograph taken from the air. When used in a cartographic context, this term normally refers to photographs of the surface of the Earth (or other celestial body) taken downwards, vertically, or at a predetermined angle from the vertical)</subfield>
+  </datafield>
+  <datafield tag="680" ind1=" " ind2=" ">
+    <subfield code="i">This heading is used as a genre/form heading for photographs taken from the air. Representations of cities or landscapes portrayed as if viewed from above are entered under</subfield>
+    <subfield code="a">Aerial views.</subfield>
+  </datafield>
+  <datafield tag="681" ind1=" " ind2=" ">
+    <subfield code="i">Note under</subfield>
+    <subfield code="a">Aerial views</subfield>
+  </datafield>
+</record>
+<record>
+  <leader>01477cz  a2200253n  4500</leader>
+  <controlfield tag="001">gf2011026033</controlfield>
+  <controlfield tag="003">DLC</controlfield>
+  <controlfield tag="005">20110518074622.0</controlfield>
+  <controlfield tag="008">110504|| anznnbabn          |a ana      </controlfield>
+  <datafield tag="010" ind1=" " ind2=" ">
+    <subfield code="a">gf2011026033</subfield>
+    <subfield code="z">sh2010025014</subfield>
+  </datafield>
+  <datafield tag="040" ind1=" " ind2=" ">
+    <subfield code="a">DLC</subfield>
+    <subfield code="b">eng</subfield>
+    <subfield code="c">DLC</subfield>
+    <subfield code="f">lcgft</subfield>
+  </datafield>
+  <datafield tag="155" ind1=" " ind2=" ">
+    <subfield code="a">Aerial views</subfield>
+  </datafield>
+  <datafield tag="455" ind1=" " ind2=" ">
+    <subfield code="a">Bird&apos;s-eye views</subfield>
+  </datafield>
+  <datafield tag="455" ind1=" " ind2=" ">
+    <subfield code="a">Overhead views</subfield>
+  </datafield>
+  <datafield tag="455" ind1=" " ind2=" ">
+    <subfield code="a">Views, Aerial</subfield>
+  </datafield>
+  <datafield tag="455" ind1=" " ind2=" ">
+    <subfield code="a">Views, Bird&apos;s-eye</subfield>
+  </datafield>
+  <datafield tag="555" ind1=" " ind2=" ">
+    <subfield code="w">g</subfield>
+    <subfield code="a">Cartographic materials</subfield>
+  </datafield>
+  <datafield tag="670" ind1=" " ind2=" ">
+    <subfield code="a">Form/genre for cartographic materials [draft of LC working group], 1996:</subfield>
+    <subfield code="b">Views--Aerial (A perspective representation of cities or landscapes portrayed as if viewed from above at an oblique angle; not generally drawn to scale but shows street patterns, individual buildings, and major landscape features (e.g., bird&apos;s-eye view, panorama, panoramic drawing, worm&apos;s-eye view))</subfield>
+  </datafield>
+  <datafield tag="670" ind1=" " ind2=" ">
+    <subfield code="a">Brown&apos;s Lend &amp; Engineering Co. Birds eye view of Everett Washington, 1893, 1983.</subfield>
+  </datafield>
+  <datafield tag="670" ind1=" " ind2=" ">
+    <subfield code="a">Cartographic materials, 2003:</subfield>
+    <subfield code="b">glossary (Bird&apos;s-eye view)</subfield>
+  </datafield>
+  <datafield tag="670" ind1=" " ind2=" ">
+    <subfield code="a">Wikipedia, Sept. 15, 2010</subfield>
+    <subfield code="b">(Bird&apos;s-eye view; aerial view; Overhead view is fairly synonymous with bird&apos;s-eye view)</subfield>
+  </datafield>
+  <datafield tag="675" ind1=" " ind2=" ">
+    <subfield code="a">Glossary of the mapping sciences, 1994;</subfield>
+    <subfield code="a">Cartographic materials, 2002, 2005 update</subfield>
+  </datafield>
+  <datafield tag="680" ind1=" " ind2=" ">
+    <subfield code="i">This heading is used as a genre/form heading for representations of cities or landscapes portrayed as if viewed from above. Photographs taken from the air are entered under</subfield>
+    <subfield code="a">Aerial photographs.</subfield>
+  </datafield>
+  <datafield tag="681" ind1=" " ind2=" ">
+    <subfield code="i">Note under</subfield>
+    <subfield code="a">Aerial photographs</subfield>
+  </datafield>
+</record>
+<record>
+  <leader>01528cz  a2200205n  4500</leader>
+  <controlfield tag="001">gf2011026034</controlfield>
+  <controlfield tag="003">DLC</controlfield>
+  <controlfield tag="005">20110518074622.0</controlfield>
+  <controlfield tag="008">110504|| anznnbabn          |a ana      </controlfield>
+  <datafield tag="010" ind1=" " ind2=" ">
+    <subfield code="a">gf2011026034</subfield>
+    <subfield code="z">sh2009025062</subfield>
+  </datafield>
+  <datafield tag="040" ind1=" " ind2=" ">
+    <subfield code="a">DLC</subfield>
+    <subfield code="b">eng</subfield>
+    <subfield code="c">DLC</subfield>
+    <subfield code="f">lcgft</subfield>
+  </datafield>
+  <datafield tag="155" ind1=" " ind2=" ">
+    <subfield code="a">Aeronautical charts</subfield>
+  </datafield>
+  <datafield tag="455" ind1=" " ind2=" ">
+    <subfield code="a">Navigational charts</subfield>
+  </datafield>
+  <datafield tag="555" ind1=" " ind2=" ">
+    <subfield code="w">g</subfield>
+    <subfield code="a">Maps</subfield>
+  </datafield>
+  <datafield tag="670" ind1=" " ind2=" ">
+    <subfield code="a">LCSH, Dec. 1, 2009:</subfield>
+    <subfield code="b">(hdg.: Aeronautical charts)</subfield>
+  </datafield>
+  <datafield tag="670" ind1=" " ind2=" ">
+    <subfield code="a">Glossary of mapping, charting, and geodetic terms, 1973:</subfield>
+    <subfield code="b">(aeronautical chart: a specialized representation of mapped features of the earth, or some part of it, produced to show selected terrain, cultural and hydrographic features, and supplemental information required for air navigation, pilotage, or for planning air operations)</subfield>
+  </datafield>
+  <datafield tag="670" ind1=" " ind2=" ">
+    <subfield code="a">Glossary of the mapping sciences, 1994:</subfield>
+    <subfield code="b">chart, aeronautical (a chart designed for use in navigating aircraft.  An aeronautical chart shows airports and aids to and hazards to aerial navigation, as well as some of the natural features an man-made objects shown on general maps.  Also called a navigational chart)</subfield>
+  </datafield>
+  <datafield tag="670" ind1=" " ind2=" ">
+    <subfield code="a">Wikipedia, Dec. 1, 2009:</subfield>
+    <subfield code="b">(aeronautical chart: map designed to assist in navigation of aircraft, much as nautical charts do for watercraft, or a roadmap for drivers)</subfield>
+  </datafield>
+  <datafield tag="675" ind1=" " ind2=" ">
+    <subfield code="a">Credo reference, Dec. 1, 2009.</subfield>
+  </datafield>
+  <datafield tag="680" ind1=" " ind2=" ">
+    <subfield code="i">This heading is used as a genre/form heading for maps giving information intended for use in air navigation, such as compass rose, isogonic lines, location of landing fields, beacons, hazards to air navigation, etc.</subfield>
+  </datafield>
+</record>
+<record>
+  <leader>00624cz  a2200133n  4500</leader>
+  <controlfield tag="001">gf2011026035</controlfield>
+  <controlfield tag="003">DLC</controlfield>
+  <controlfield tag="005">20110518074623.0</controlfield>
+  <controlfield tag="008">110504|| anznnbabn          |a ana      </controlfield>
+  <datafield tag="010" ind1=" " ind2=" ">
+    <subfield code="a">gf2011026035</subfield>
+    <subfield code="z">sh2010025078</subfield>
+  </datafield>
+  <datafield tag="040" ind1=" " ind2=" ">
+    <subfield code="a">DLC</subfield>
+    <subfield code="b">eng</subfield>
+    <subfield code="c">DLC</subfield>
+    <subfield code="f">lcgft</subfield>
+  </datafield>
+  <datafield tag="155" ind1=" " ind2=" ">
+    <subfield code="a">Affidavits</subfield>
+  </datafield>
+  <datafield tag="555" ind1=" " ind2=" ">
+    <subfield code="w">g</subfield>
+    <subfield code="a">Legal instruments</subfield>
+  </datafield>
+  <datafield tag="670" ind1=" " ind2=" ">
+    <subfield code="a">Genre/form terms for law materials [report prepared by the Technical Services Special Interest Section of AALL], 2010:</subfield>
+    <subfield code="b">Affidavits (This heading is used as a genre/form heading for voluntary declarations of facts written down and sworn to before an officer authorized to administer oaths, such as a notary public.)</subfield>
+  </datafield>
+</record>
+</collection>
