@@ -7,6 +7,7 @@ import (
 	"os"
 	"testing"
 
+	"github.com/boutros/marc"
 	"github.com/stretchr/testify/assert"
 	"github.com/voidfiles/a/marcdex"
 )
@@ -28,7 +29,7 @@ func testMarcXml() (io.Reader, error) {
 func TestNewMarcStream(t *testing.T) {
 	tmpPath, err := ioutil.TempFile("", "")
 	assert.NoError(t, err)
-	ms, err := marcdex.NewMarcStream(tmpPath, 100)
+	ms, err := marcdex.NewMarcStream(tmpPath, 100, marc.MARCXML)
 	assert.NoError(t, err)
 	assert.IsType(t, &marcdex.MarcStream{}, ms)
 
@@ -37,7 +38,7 @@ func TestNewMarcStream(t *testing.T) {
 func TestIterator(t *testing.T) {
 	testData, err := testMarcXml()
 	assert.NoError(t, err)
-	ms, err := marcdex.NewMarcStream(testData, 2)
+	ms, err := marcdex.NewMarcStream(testData, 2, marc.MARCXML)
 	assert.NoError(t, err)
 	more := ms.Next()
 	assert.True(t, more, "")
@@ -48,5 +49,5 @@ func TestIterator(t *testing.T) {
 		counter++
 	}
 
-	assert.Equal(t, 5, counter)
+	assert.Equal(t, 6, counter)
 }

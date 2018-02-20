@@ -77,3 +77,34 @@ run_boltdb:
 
 run_indexer_boltdb:
 	$(WORKDIR)/a_indexer_$(OS)_$(ARCH) --db=bolt --dbpath=$(DATA_DIR)/cayley.db  --indexpath=$(DATA_DIR)/search.db
+
+index_subjects:
+	mkdir -p $(DATA_DIR)
+	cat $(CACHE)/Subjects.2014.part01.xml | $(WORKDIR)/a_indexer_$(OS)_$(ARCH) --dbpath=$(DATA_DIR)/marcdex.db
+
+covert_fast_xml_to_binary:
+	$(WORKDIR)/a_marc2marc_$(OS)_$(ARCH) -i $(CACHE)/FASTChronological.marcxml -f m > $(CACHE)/FASTChronological.marc
+	$(WORKDIR)/a_marc2marc_$(OS)_$(ARCH) -i $(CACHE)/FASTCorporate.marcxml -f m > $(CACHE)/FASTCorporate.marc
+	$(WORKDIR)/a_marc2marc_$(OS)_$(ARCH) -i $(CACHE)/FASTEvent.marcxml -f m > $(CACHE)/FASTEvent.marc
+	$(WORKDIR)/a_marc2marc_$(OS)_$(ARCH) -i $(CACHE)/FASTFormGenre.marcxml -f m > $(CACHE)/FASTFormGenre.marc
+	$(WORKDIR)/a_marc2marc_$(OS)_$(ARCH) -i $(CACHE)/FASTGeographic.marcxml -f m > $(CACHE)/FASTGeographic.marc
+	$(WORKDIR)/a_marc2marc_$(OS)_$(ARCH) -i $(CACHE)/FASTPersonal.marcxml -f m > $(CACHE)/FASTPersonal.marc
+	$(WORKDIR)/a_marc2marc_$(OS)_$(ARCH) -i $(CACHE)/FASTTitle.marcxml -f m > $(CACHE)/FASTTitle.marc
+	$(WORKDIR)/a_marc2marc_$(OS)_$(ARCH) -i $(CACHE)/FASTTopical.marcxml -f m > $(CACHE)/FASTTopical.marc
+
+index_fast:
+	mkdir -p $(DATA_DIR)
+	# $(WORKDIR)/a_indexer_$(OS)_$(ARCH) --inputpath=$(CACHE)/FASTChronological.marc --dbpath=$(DATA_DIR)/marcdex.db
+	# $(WORKDIR)/a_indexer_$(OS)_$(ARCH) --inputpath=$(CACHE)/FASTCorporate.marc --dbpath=$(DATA_DIR)/marcdex.db
+	# $(WORKDIR)/a_indexer_$(OS)_$(ARCH) --inputpath=$(CACHE)/FASTEvent.marc --dbpath=$(DATA_DIR)/marcdex.db
+	$(WORKDIR)/a_indexer_$(OS)_$(ARCH) --inputpath=$(CACHE)/FASTFormGenre.marc --dbpath=$(DATA_DIR)/marcdex.db
+	$(WORKDIR)/a_indexer_$(OS)_$(ARCH) --inputpath=$(CACHE)/FASTGeographic.marc --dbpath=$(DATA_DIR)/marcdex.db
+	# $(WORKDIR)/a_indexer_$(OS)_$(ARCH) --inputpath=$(CACHE)/FASTPersonal.marc --dbpath=$(DATA_DIR)/marcdex.db
+	# $(WORKDIR)/a_indexer_$(OS)_$(ARCH) --inputpath=$(CACHE)/FASTTitle.marc --dbpath=$(DATA_DIR)/marcdex.db
+	$(WORKDIR)/a_indexer_$(OS)_$(ARCH) --inputpath=$(CACHE)/FASTTopical.marc --dbpath=$(DATA_DIR)/marcdex.db
+
+
+time_index_fast:
+	rm -fR $(DATA_DIR)
+	mkdir -p $(DATA_DIR)
+	time $(WORKDIR)/a_indexer_$(OS)_$(ARCH) --inputpath=$(CACHE)/FASTFormGenre.marcxml --dbpath=$(DATA_DIR)/marcdex.db -cpuprofile=./profile.out
