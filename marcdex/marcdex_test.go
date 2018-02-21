@@ -6,9 +6,8 @@ import (
 	"testing"
 
 	"github.com/boutros/marc"
-	"github.com/stretchr/testify/assert"
-	"github.com/voidfiles/a/data_manager"
 	"github.com/voidfiles/a/marcdex"
+	"github.com/voidfiles/a/recordstore"
 )
 
 type TestMarcStream struct {
@@ -47,10 +46,7 @@ type TestDataWriter struct {
 	err error
 }
 
-func (dw *TestDataWriter) Save(data interface{}) error { return dw.err }
-func (dw *TestDataWriter) InTransaction(update data_manager.TransactionFunction) error {
-	return update(&TestNodeInterface{})
-}
+func (dw *TestDataWriter) SaveChunk(records []recordstore.ResoRecord) error { return dw.err }
 
 func NewTestDataWriter(err error) *TestDataWriter {
 	return &TestDataWriter{
@@ -105,11 +101,4 @@ func buildTestRecord() marc.Record {
 		CtrlFields: marc.CFields{cField},
 		DataFields: marc.DFields{dField},
 	}
-}
-
-func TestNewSubjectHeadingMarcFromMarcRecord(t *testing.T) {
-	record := buildTestRecord()
-	heading := marcdex.ConvertMarcRecordToSubjectHeadingMarc(&record)
-	assert.Equal(t, "bbb", heading.ID)
-	assert.Equal(t, map[string]string{"155": "xxx"}, heading.Headings)
 }

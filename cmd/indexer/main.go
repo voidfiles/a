@@ -10,13 +10,11 @@ import (
 	"runtime/pprof"
 	"time"
 
-	"github.com/asdine/storm"
-	"github.com/asdine/storm/codec/msgpack"
 	"github.com/boutros/marc"
 	"github.com/coreos/bbolt"
 	"github.com/voidfiles/a/cli"
-	"github.com/voidfiles/a/data_manager"
 	"github.com/voidfiles/a/marcdex"
+	"github.com/voidfiles/a/recordstore"
 )
 
 func detectFormat(f *os.File) (marc.Format, error) {
@@ -45,23 +43,15 @@ func main() {
 	var cpuprofile = flag.String("cpuprofile", "", "write cpu profile to `file`")
 	args := cli.GetArgs()
 
-	db, err := storm.Open(
-		args.Dbpath,
-		storm.Batch(),
-		storm.Codec(msgpack.Codec),
-		storm.BoltOptions(0600, &bolt.Options{
-			Timeout:        1 * time.Second,
-			NoSync:         true,
-			NoFreelistSync: true,
-		}))
-
+	db, err := bolt.Open(args.Dbpath, 600, &bolt.Options{
+		Timeout:        1 * time.Second,
+		NoSync:         true,
+		NoFreelistSync: true,
+	})
 	if err != nil {
 		panic(err)
 	}
-	if err = db.Init(&marcdex.ResoRecord{}); err != nil {
-		panic(err)
-	}
-	dataManager := data_manager.MustNewDataManager(db)
+	recordStore := recordstore.MustNewRecordStore(db)
 	var reader io.Reader
 	var format marc.Format
 	if args.InputPath != "" {
@@ -83,7 +73,7 @@ func main() {
 		panic(err)
 	}
 
-	indexer := marcdex.MustNewMarcIndexer(ms, dataManager)
+	indexer := marcdex.MustNewMarcIndexer(ms, recordStore)
 	if *cpuprofile != "" {
 		f, err := os.Create(*cpuprofile)
 		if err != nil {

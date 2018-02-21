@@ -6,50 +6,8 @@ import (
 	"sync"
 
 	"github.com/boutros/marc"
-	"github.com/voidfiles/a/data_manager"
+	"github.com/voidfiles/a/recordstore"
 )
-
-type ResoRecord struct {
-	ID              string
-	Type            string `storm:"index"`
-	AltIdentifier   []string
-	OldIdentifier   []string
-	Heading         []string
-	AltHeading      []string
-	WestCoordinate  []string
-	EastCoordinate  []string
-	NorthCoordinate []string
-	SouthCoordinate []string
-	MARCGeoCode     []string
-	Classification  []string
-	GeneralNote     []string
-}
-
-// SubjectHeadingMarc is bilibographic record that gets indexed by id
-type SubjectHeadingMarc struct {
-	ID       string
-	Headings map[string]string
-}
-
-// ConvertMarcRecordToSubjectHeadingMarc converts a marc.Record to a SubjectHeadingMarc
-func ConvertMarcRecordToSubjectHeadingMarc(m *marc.Record) SubjectHeadingMarc {
-	cfield, _ := m.GetCField("001")
-	id := cfield.Value
-	headings := map[string]string{}
-	for _, tag := range []string{"155", "455", "555"} {
-		fields := m.GetDFields(tag)
-		for _, field := range fields {
-			heading := field.SubField("a")
-			if heading != "" {
-				headings[tag] = heading
-			}
-		}
-	}
-	return SubjectHeadingMarc{
-		ID:       id,
-		Headings: headings,
-	}
-}
 
 func getFields(rec *marc.Record, tags []string, subfield string, ignores []string) []string {
 	var Values []string
@@ -101,10 +59,10 @@ func stringInSlice(a string, list []string) bool {
 	return false
 }
 
-func ConvertMarctoResoRecord(rec *marc.Record) ResoRecord {
+func ConvertMarctoResoRecord(rec *marc.Record) recordstore.ResoRecord {
 	id, _ := rec.GetCField("001")
-	return ResoRecord{
-		ID:              strings.Replace(id.Value, " ", "", -1),
+	return recordstore.ResoRecord{
+		Identifier:      strings.Replace(id.Value, " ", "", -1),
 		AltIdentifier:   getFields(rec, []string{"010"}, "a", []string{}),
 		OldIdentifier:   getFields(rec, []string{"010"}, "z", []string{}),
 		Heading:         getFields(rec, []string{"100", "110", "111", "130", "150", "151", "155", "180", "181", "182", "185"}, "", []string{}),
@@ -134,8 +92,7 @@ type IMarcStream interface {
 // DataWriter is an interface that can save things to databases
 // you can also save things in transactions
 type DataWriter interface {
-	Save(interface{}) error
-	InTransaction(data_manager.TransactionFunction) error
+	SaveChunk([]recordstore.ResoRecord) error
 }
 
 // MustNewMarcIndexer will return a new MarcIndexer or die
@@ -149,7 +106,7 @@ func MustNewMarcIndexer(ms IMarcStream, db DataWriter) *MarcIndexer {
 }
 
 type indexChunk struct {
-	records    []ResoRecord
+	records    []recordstore.ResoRecord
 	chunkIndex int
 }
 
@@ -161,7 +118,7 @@ func (mi *MarcIndexer) BatchWrite() error {
 		for mi.ms.Next() {
 			chunks++
 			log.Printf("%v chunk read", chunks)
-			records := make([]ResoRecord, 0)
+			records := make([]recordstore.ResoRecord, 0)
 			for _, record := range mi.ms.Value() {
 				records = append(records, ConvertMarctoResoRecord(record))
 			}
@@ -179,16 +136,10 @@ func (mi *MarcIndexer) BatchWrite() error {
 			defer wg.Done()
 			for chunk := range chunkChan {
 				log.Printf("%v chunk working", chunk.chunkIndex)
-				for _, record := range chunk.records {
-					mi.db.Save(&record)
+				err := mi.db.SaveChunk(chunk.records)
+				if err != nil {
+					log.Printf("%v failed to save chunk", chunk.chunkIndex)
 				}
-				// mi.db.InTransaction(func(dbx data_manager.NodeInterface) error {
-				// 	for _, record := range chunk.records {
-				// 		dbx.Save(&record)
-				// 	}
-				//
-				// 	return nil
-				// })
 
 				log.Printf("%v chunk finished", chunk.chunkIndex)
 			}
