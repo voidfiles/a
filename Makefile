@@ -107,4 +107,10 @@ index_fast:
 time_index_fast:
 	rm -fR $(DATA_DIR)
 	mkdir -p $(DATA_DIR)
-	time $(WORKDIR)/a_indexer_$(OS)_$(ARCH) --inputpath=$(CACHE)/FASTFormGenre.marcxml --dbpath=$(DATA_DIR)/marcdex.db -cpuprofile=./profile.out
+	time $(WORKDIR)/a_indexer_$(OS)_$(ARCH) --inputpath=$(CACHE)/FASTFormGenre.marc --dbpath=$(DATA_DIR)/marcdex.db -cpuprofile=./profile.out
+
+
+time_index_lcsh:
+	rm -fR $(DATA_DIR)
+	mkdir -p $(DATA_DIR)
+	time $(WORKDIR)/a_indexer_$(OS)_$(ARCH) --inputpath=$(CACHE)/Subjects.2014.utf8.marc --dbpath=$(DATA_DIR)/marcdex.db # -cpuprofile=./profile.out

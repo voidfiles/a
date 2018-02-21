@@ -2,11 +2,28 @@ package marcdex
 
 import (
 	"log"
+	"strings"
 	"sync"
 
 	"github.com/boutros/marc"
 	"github.com/voidfiles/a/data_manager"
 )
+
+type ResoRecord struct {
+	ID              string
+	Type            string `storm:"index"`
+	AltIdentifier   []string
+	OldIdentifier   []string
+	Heading         []string
+	AltHeading      []string
+	WestCoordinate  []string
+	EastCoordinate  []string
+	NorthCoordinate []string
+	SouthCoordinate []string
+	MARCGeoCode     []string
+	Classification  []string
+	GeneralNote     []string
+}
 
 // SubjectHeadingMarc is bilibographic record that gets indexed by id
 type SubjectHeadingMarc struct {
@@ -31,6 +48,74 @@ func ConvertMarcRecordToSubjectHeadingMarc(m *marc.Record) SubjectHeadingMarc {
 	return SubjectHeadingMarc{
 		ID:       id,
 		Headings: headings,
+	}
+}
+
+func getFields(rec *marc.Record, tags []string, subfield string, ignores []string) []string {
+	var Values []string
+
+	for _, tag := range tags {
+
+		Field := rec.GetDFields(tag)
+
+		if len(subfield) > 0 {
+			if len(Field) > 0 {
+				for i := 0; i < len(Field); i++ {
+					s := string(Field[i].SubField(subfield))
+					Values = append(Values, s)
+				}
+			}
+		} else {
+			if len(Field) > 0 && len(ignores) == 0 {
+				for i := 0; i < len(Field); i++ {
+					s := ""
+					for _, subf := range Field[i].SubFields {
+						s += subf.Value + ". "
+					}
+					Values = append(Values, s)
+				}
+			} else {
+				for i := 0; i < len(Field); i++ {
+					s := ""
+					for _, subf := range Field[i].SubFields {
+						if !stringInSlice(subf.Code, ignores) {
+							s += subf.Value + ". "
+						}
+					}
+					Values = append(Values, s)
+				}
+			}
+		}
+
+	}
+
+	return Values
+}
+
+func stringInSlice(a string, list []string) bool {
+	for _, b := range list {
+		if b == a {
+			return true
+		}
+	}
+	return false
+}
+
+func ConvertMarctoResoRecord(rec *marc.Record) ResoRecord {
+	id, _ := rec.GetCField("001")
+	return ResoRecord{
+		ID:              strings.Replace(id.Value, " ", "", -1),
+		AltIdentifier:   getFields(rec, []string{"010"}, "a", []string{}),
+		OldIdentifier:   getFields(rec, []string{"010"}, "z", []string{}),
+		Heading:         getFields(rec, []string{"100", "110", "111", "130", "150", "151", "155", "180", "181", "182", "185"}, "", []string{}),
+		AltHeading:      getFields(rec, []string{"400", "500", "410", "510", "411", "430", "530", "450", "550", "451", "551", "455", "555", "480", "580", "581", "781", "482", "485", "585"}, "", []string{"w", "5"}),
+		WestCoordinate:  getFields(rec, []string{"034"}, "d", []string{}),
+		EastCoordinate:  getFields(rec, []string{"034"}, "e", []string{}),
+		NorthCoordinate: getFields(rec, []string{"034"}, "f", []string{}),
+		SouthCoordinate: getFields(rec, []string{"034"}, "g", []string{}),
+		MARCGeoCode:     getFields(rec, []string{"043"}, "a", []string{}),
+		Classification:  getFields(rec, []string{"050", "053", "072", "073"}, "", []string{}),
+		GeneralNote:     getFields(rec, []string{"680"}, "", []string{}),
 	}
 }
 
@@ -64,24 +149,24 @@ func MustNewMarcIndexer(ms IMarcStream, db DataWriter) *MarcIndexer {
 }
 
 type indexChunk struct {
-	headings   []SubjectHeadingMarc
+	records    []ResoRecord
 	chunkIndex int
 }
 
 // BatchWrite will write marc data to boltdb
 func (mi *MarcIndexer) BatchWrite() error {
-	chunkChan := make(chan indexChunk, 4)
+	chunkChan := make(chan indexChunk, 2)
 	go func() {
 		chunks := 0
 		for mi.ms.Next() {
 			chunks++
 			log.Printf("%v chunk read", chunks)
-			headings := make([]SubjectHeadingMarc, 0)
+			records := make([]ResoRecord, 0)
 			for _, record := range mi.ms.Value() {
-				headings = append(headings, ConvertMarcRecordToSubjectHeadingMarc(record))
+				records = append(records, ConvertMarctoResoRecord(record))
 			}
 			chunkChan <- indexChunk{
-				headings:   headings,
+				records:    records,
 				chunkIndex: chunks,
 			}
 		}
@@ -94,13 +179,17 @@ func (mi *MarcIndexer) BatchWrite() error {
 			defer wg.Done()
 			for chunk := range chunkChan {
 				log.Printf("%v chunk working", chunk.chunkIndex)
-				mi.db.InTransaction(func(dbx data_manager.NodeInterface) error {
-					for _, heading := range chunk.headings {
-						dbx.Save(heading)
-					}
+				for _, record := range chunk.records {
+					mi.db.Save(&record)
+				}
+				// mi.db.InTransaction(func(dbx data_manager.NodeInterface) error {
+				// 	for _, record := range chunk.records {
+				// 		dbx.Save(&record)
+				// 	}
+				//
+				// 	return nil
+				// })
 
-					return nil
-				})
 				log.Printf("%v chunk finished", chunk.chunkIndex)
 			}
 		}()

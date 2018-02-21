@@ -2,7 +2,6 @@ package data_manager
 
 import (
 	"github.com/asdine/storm"
-	"github.com/coreos/bbolt"
 )
 
 // NodeInterface is a subset of storm.Node
@@ -27,12 +26,16 @@ func MustNewDataManager(db *storm.DB) *DataManager {
 
 // InTransaction will save a list of data in a tx
 func (dm *DataManager) InTransaction(update TransactionFunction) error {
-	dm.db.Bolt.Update(func(tx *bolt.Tx) error {
-		dbx := dm.db.WithTransaction(tx)
-		return update(dbx)
-	})
-
-	return nil
+	tx, err := dm.db.Begin(true)
+	if err != nil {
+		return err
+	}
+	defer tx.Rollback()
+	err = update(tx)
+	if err != nil {
+		return err
+	}
+	return tx.Commit()
 }
 
 // Save will save an item to a database

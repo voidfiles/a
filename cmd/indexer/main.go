@@ -58,6 +58,9 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+	if err = db.Init(&marcdex.ResoRecord{}); err != nil {
+		panic(err)
+	}
 	dataManager := data_manager.MustNewDataManager(db)
 	var reader io.Reader
 	var format marc.Format
