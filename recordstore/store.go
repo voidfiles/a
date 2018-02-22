@@ -7,7 +7,12 @@ import (
 	"github.com/coreos/bbolt"
 )
 
-const dbResoRecord = "ResoRecord"
+const (
+	dbResoRecord = "ResoRecord"
+	idPrefix     = "identifier"
+	altPrefix    = "alt-identifier"
+	oldPrefix    = "old-identifier"
+)
 
 // RecordStore will store a record into an index
 type RecordStore struct {
@@ -76,14 +81,14 @@ func ConvertRecordToKeyValues(record ResoRecord) ([]KeyValue, error) {
 		return keyValues, nil
 	}
 
-	keyValues = append(keyValues, NewKeyValue(dbResoRecord, "primary_key", record.Identifier, mainValue))
+	keyValues = append(keyValues, NewKeyValue(dbResoRecord, idPrefix, record.Identifier, mainValue))
 
 	for _, id := range record.AltIdentifier {
 		keyValues = append(
 			keyValues,
 			NewKeyValue(
 				dbResoRecord,
-				fmt.Sprintf("old-identifier:%s", record.Identifier),
+				fmt.Sprintf("%s:%s", altPrefix, record.Identifier),
 				id,
 				[]byte(record.Identifier),
 			),
@@ -95,7 +100,7 @@ func ConvertRecordToKeyValues(record ResoRecord) ([]KeyValue, error) {
 			keyValues,
 			NewKeyValue(
 				dbResoRecord,
-				fmt.Sprintf("alt_key:%s", record.Identifier),
+				fmt.Sprintf("%s:%s", oldPrefix, record.Identifier),
 				id,
 				[]byte(record.Identifier),
 			),
@@ -135,4 +140,16 @@ func (r *RecordStore) SaveChunk(records []ResoRecord) error {
 
 		return nil
 	})
+}
+
+func (r *RecordStore) FindByIdentifier(id string) (ResoRecord, error) {
+	var record ResoRecord
+	err := r.db.View(func(tx *bolt.Tx) error {
+		bucket := tx.Bucket([]byte(dbResoRecord))
+		value := bucket.Get([]byte(fmt.Sprintf("%s:%s", idPrefix, id)))
+
+		json.Unmarshal(value, record)
+		return nil
+	})
+
 }
