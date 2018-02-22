@@ -43,11 +43,13 @@ func main() {
 	var cpuprofile = flag.String("cpuprofile", "", "write cpu profile to `file`")
 	args := cli.GetArgs()
 
-	db, err := bolt.Open(args.Dbpath, 600, &bolt.Options{
+	db, err := bolt.Open(args.Dbpath, 0666, &bolt.Options{
 		Timeout:        1 * time.Second,
 		NoSync:         true,
 		NoFreelistSync: true,
 	})
+	defer db.Close()
+
 	if err != nil {
 		panic(err)
 	}

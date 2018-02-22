@@ -92,25 +92,38 @@ covert_fast_xml_to_binary:
 	$(WORKDIR)/a_marc2marc_$(OS)_$(ARCH) -i $(CACHE)/FASTTitle.marcxml -f m > $(CACHE)/FASTTitle.marc
 	$(WORKDIR)/a_marc2marc_$(OS)_$(ARCH) -i $(CACHE)/FASTTopical.marcxml -f m > $(CACHE)/FASTTopical.marc
 
-index_fast:
-	mkdir -p $(DATA_DIR)
-	# $(WORKDIR)/a_indexer_$(OS)_$(ARCH) --inputpath=$(CACHE)/FASTChronological.marc --dbpath=$(DATA_DIR)/marcdex.db
-	# $(WORKDIR)/a_indexer_$(OS)_$(ARCH) --inputpath=$(CACHE)/FASTCorporate.marc --dbpath=$(DATA_DIR)/marcdex.db
-	# $(WORKDIR)/a_indexer_$(OS)_$(ARCH) --inputpath=$(CACHE)/FASTEvent.marc --dbpath=$(DATA_DIR)/marcdex.db
-	$(WORKDIR)/a_indexer_$(OS)_$(ARCH) --inputpath=$(CACHE)/FASTFormGenre.marc --dbpath=$(DATA_DIR)/marcdex.db
-	$(WORKDIR)/a_indexer_$(OS)_$(ARCH) --inputpath=$(CACHE)/FASTGeographic.marc --dbpath=$(DATA_DIR)/marcdex.db
-	# $(WORKDIR)/a_indexer_$(OS)_$(ARCH) --inputpath=$(CACHE)/FASTPersonal.marc --dbpath=$(DATA_DIR)/marcdex.db
-	# $(WORKDIR)/a_indexer_$(OS)_$(ARCH) --inputpath=$(CACHE)/FASTTitle.marc --dbpath=$(DATA_DIR)/marcdex.db
-	$(WORKDIR)/a_indexer_$(OS)_$(ARCH) --inputpath=$(CACHE)/FASTTopical.marc --dbpath=$(DATA_DIR)/marcdex.db
+# index_fast:
+# 	mkdir -p $(DATA_DIR)
+# 	# $(WORKDIR)/a_indexer_$(OS)_$(ARCH) --inputpath=$(CACHE)/FASTChronological.marc --dbpath=$(DATA_DIR)/marcdex.db
+# 	# $(WORKDIR)/a_indexer_$(OS)_$(ARCH) --inputpath=$(CACHE)/FASTCorporate.marc --dbpath=$(DATA_DIR)/marcdex.db
+# 	# $(WORKDIR)/a_indexer_$(OS)_$(ARCH) --inputpath=$(CACHE)/FASTEvent.marc --dbpath=$(DATA_DIR)/marcdex.db
+# 	$(WORKDIR)/a_indexer_$(OS)_$(ARCH) --inputpath=$(CACHE)/FASTFormGenre.marc --dbpath=$(DATA_DIR)/marcdex.db
+# 	$(WORKDIR)/a_indexer_$(OS)_$(ARCH) --inputpath=$(CACHE)/FASTGeographic.marc --dbpath=$(DATA_DIR)/marcdex.db
+# 	# $(WORKDIR)/a_indexer_$(OS)_$(ARCH) --inputpath=$(CACHE)/FASTPersonal.marc --dbpath=$(DATA_DIR)/marcdex.db
+# 	# $(WORKDIR)/a_indexer_$(OS)_$(ARCH) --inputpath=$(CACHE)/FASTTitle.marc --dbpath=$(DATA_DIR)/marcdex.db
+# 	$(WORKDIR)/a_indexer_$(OS)_$(ARCH) --inputpath=$(CACHE)/FASTTopical.marc --dbpath=$(DATA_DIR)/marcdex.db
+#
 
+index_fast:
+	$(WORKDIR)/a_indexer_$(OS)_$(ARCH) --inputpath=$(CACHE)/FASTFormGenre.marc --dbpath=$(DATA_DIR)/marcdex.db
+	$(WORKDIR)/a_indexer_$(OS)_$(ARCH) --inputpath=$(CACHE)/FASTTopical.marc --dbpath=$(DATA_DIR)/marcdex.db
+	$(WORKDIR)/a_indexer_$(OS)_$(ARCH) --inputpath=$(CACHE)/FASTEvent.marc --dbpath=$(DATA_DIR)/marcdex.db
+	$(WORKDIR)/a_indexer_$(OS)_$(ARCH) --inputpath=$(CACHE)/FASTChronological.marc --dbpath=$(DATA_DIR)/marcdex.db
+
+index_lcsh:
+	$(WORKDIR)/a_indexer_$(OS)_$(ARCH) --inputpath=$(CACHE)/Subjects.2014.utf8.marc --dbpath=$(DATA_DIR)/marcdex.db # -cpuprofile=./profile.out
 
 time_index_fast:
 	rm -fR $(DATA_DIR)
 	mkdir -p $(DATA_DIR)
-	time $(WORKDIR)/a_indexer_$(OS)_$(ARCH) --inputpath=$(CACHE)/FASTFormGenre.marc --dbpath=$(DATA_DIR)/marcdex.db -cpuprofile=./profile.out
-
+	time make index_fast
 
 time_index_lcsh:
 	rm -fR $(DATA_DIR)
 	mkdir -p $(DATA_DIR)
-	time $(WORKDIR)/a_indexer_$(OS)_$(ARCH) --inputpath=$(CACHE)/Subjects.2014.utf8.marc --dbpath=$(DATA_DIR)/marcdex.db # -cpuprofile=./profile.out
+	time make index_lcsh
+
+time_index_everything:
+	rm -fR $(DATA_DIR)
+	mkdir -p $(DATA_DIR)
+	time make index_fast index_lcsh
