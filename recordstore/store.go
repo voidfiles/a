@@ -8,45 +8,48 @@ import (
 )
 
 const (
-	dbResoRecord = "ResoRecord"
-	idPrefix     = "identifier"
-	altPrefix    = "alt-identifier"
-	oldPrefix    = "old-identifier"
+	// ResoRecordBucketName is the name of DB Buckte
+	ResoRecordBucketName = "ResoRecord"
+	// IdentifierKeyPrefix prefixes keys in boltdb for identifier field
+	IdentifierKeyPrefix = "identifier"
+	// AltIdentifierKeyPrefix prefixes keys in boltdb for alt-identifier field
+	AltIdentifierKeyPrefix = "alt-identifier"
+	// OldIdentifierKeyPrefix prefixes keys in boltdb for old-identifier field
+	OldIdentifierKeyPrefix = "old-identifier"
 )
 
 // RecordStore will store a record into an index
 type RecordStore struct {
-	db            *bolt.DB
-	inTransaction bool
+	db *bolt.DB
 }
 
 // ResoRecord is a record we can use to do authority resolution
 type ResoRecord struct {
-	Identifier      string   `json:"identifier"`
-	Type            string   `json:"type"`
-	AltIdentifier   []string `json:"alt-identifier"`
-	OldIdentifier   []string `json:"old-identifier"`
-	Heading         []string `json:"heading"`
-	AltHeading      []string `json:"alt-heading"`
-	WestCoordinate  []string `json:"west-coordinate"`
-	EastCoordinate  []string `json:"east-coordinate"`
-	NorthCoordinate []string `json:"north-coordinate"`
-	SouthCoordinate []string `json:"south-coordinate"`
-	MARCGeoCode     []string `json:"marc-geo-code"`
-	Classification  []string `json:"classification"`
-	GeneralNote     []string `json:"general-note"`
+	Identifier      string   `json:"identifier,omitempty"`
+	Type            string   `json:"type,omitempty"`
+	AltIdentifier   []string `json:"alt-identifier,omitempty"`
+	OldIdentifier   []string `json:"old-identifier,omitempty"`
+	Heading         []string `json:"heading,omitempty"`
+	AltHeading      []string `json:"alt-heading,omitempty"`
+	WestCoordinate  []string `json:"west-coordinate,omitempty"`
+	EastCoordinate  []string `json:"east-coordinate,omitempty"`
+	NorthCoordinate []string `json:"north-coordinate,omitempty"`
+	SouthCoordinate []string `json:"south-coordinate,omitempty"`
+	MARCGeoCode     []string `json:"marc-geo-code,omitempty"`
+	Classification  []string `json:"classification,omitempty"`
+	GeneralNote     []string `json:"general-note,omitempty"`
 }
 
-// KeyValue is an operation that will get stored in a key value database
-type KeyValue struct {
+// StorageOperation is an operation that will get stored in a key value database
+type StorageOperation struct {
 	Key    []byte
 	Value  []byte
 	Bucket string
 }
 
-// NewKeyValue crates a new KeyValue
-func NewKeyValue(bucket string, keyPrefix string, key string, value []byte) KeyValue {
-	return KeyValue{
+// NewStorageOperation crates a new KeyValue
+func NewStorageOperation(bucket string, keyPrefix string, key string, value []byte) StorageOperation {
+	return StorageOperation{
 		Key:    []byte(fmt.Sprintf("%s:%s", keyPrefix, key)),
 		Value:  value,
 		Bucket: bucket,
@@ -56,7 +59,7 @@ func NewKeyValue(bucket string, keyPrefix string, key string, value []byte) KeyV
 // MustNewRecordStore will create a new RecordStore
 func MustNewRecordStore(db *bolt.DB) *RecordStore {
 	err := db.Batch(func(tx *bolt.Tx) error {
-		_, err := tx.CreateBucketIfNotExists([]byte(dbResoRecord))
+		_, err := tx.CreateBucketIfNotExists([]byte(ResoRecordBucketName))
 		if err != nil {
 			return err
 		}
@@ -68,27 +71,26 @@ func MustNewRecordStore(db *bolt.DB) *RecordStore {
 	}
 
 	return &RecordStore{
-		db:            db,
-		inTransaction: false,
+		db: db,
 	}
 }
 
-// ConvertRecordToKeyValues returns a list of operations to be stored
-func ConvertRecordToKeyValues(record ResoRecord) ([]KeyValue, error) {
-	keyValues := make([]KeyValue, 0)
+// ConvertRecordToStorageOperations returns a list of operations to be stored
+func ConvertRecordToStorageOperations(record ResoRecord) ([]StorageOperation, error) {
+	keyValues := make([]StorageOperation, 0)
 	mainValue, err := json.Marshal(record)
 	if err != nil {
 		return keyValues, nil
 	}
 
-	keyValues = append(keyValues, NewKeyValue(dbResoRecord, idPrefix, record.Identifier, mainValue))
+	keyValues = append(keyValues, NewStorageOperation(ResoRecordBucketName, IdentifierKeyPrefix, record.Identifier, mainValue))
 
 	for _, id := range record.AltIdentifier {
 		keyValues = append(
 			keyValues,
-			NewKeyValue(
-				dbResoRecord,
-				fmt.Sprintf("%s:%s", altPrefix, record.Identifier),
+			NewStorageOperation(
+				ResoRecordBucketName,
+				fmt.Sprintf("%s:%s", AltIdentifierKeyPrefix, record.Identifier),
 				id,
 				[]byte(record.Identifier),
 			),
@@ -98,9 +100,9 @@ func ConvertRecordToKeyValues(record ResoRecord) ([]KeyValue, error) {
 	for _, id := range record.OldIdentifier {
 		keyValues = append(
 			keyValues,
-			NewKeyValue(
-				dbResoRecord,
-				fmt.Sprintf("%s:%s", oldPrefix, record.Identifier),
+			NewStorageOperation(
+				ResoRecordBucketName,
+				fmt.Sprintf("%s:%s", OldIdentifierKeyPrefix, record.Identifier),
 				id,
 				[]byte(record.Identifier),
 			),
@@ -111,9 +113,10 @@ func ConvertRecordToKeyValues(record ResoRecord) ([]KeyValue, error) {
 }
 
 //HandleOperation will persist an operation into the database
-func HandleOperation(tx *bolt.Tx, operation KeyValue) error {
+func HandleOperation(tx *bolt.Tx, operation StorageOperation) error {
 	bucket := tx.Bucket([]byte(operation.Bucket))
 	err := bucket.Put(operation.Key, operation.Value)
+
 	if err != nil {
 		return err
 	}
@@ -126,7 +129,7 @@ func (r *RecordStore) SaveChunk(records []ResoRecord) error {
 	return r.db.Update(func(tx *bolt.Tx) error {
 
 		for _, record := range records {
-			operations, err := ConvertRecordToKeyValues(record)
+			operations, err := ConvertRecordToStorageOperations(record)
 			if err != nil {
 				return fmt.Errorf("SaveChunk::ConvertRecordToKeyValues: %s", err)
 			}
@@ -142,14 +145,20 @@ func (r *RecordStore) SaveChunk(records []ResoRecord) error {
 	})
 }
 
-func (r *RecordStore) FindByIdentifier(id string) (ResoRecord, error) {
+// FindByIdentifier will lookup a ResoRecord by its main identifier
+func (r *RecordStore) FindByIdentifier(id string) (*ResoRecord, error) {
 	var record ResoRecord
 	err := r.db.View(func(tx *bolt.Tx) error {
-		bucket := tx.Bucket([]byte(dbResoRecord))
-		value := bucket.Get([]byte(fmt.Sprintf("%s:%s", idPrefix, id)))
+		bucket := tx.Bucket([]byte(ResoRecordBucketName))
+		value := bucket.Get([]byte(fmt.Sprintf("%s:%s", IdentifierKeyPrefix, id)))
 
-		json.Unmarshal(value, record)
+		json.Unmarshal(value, &record)
 		return nil
 	})
 
+	if err != nil {
+		return nil, err
+	}
+
+	return &record, nil
 }
