@@ -6,6 +6,7 @@ import (
 	"log"
 
 	"github.com/coreos/bbolt"
+	"github.com/vmihailenco/msgpack"
 )
 
 const (
@@ -26,6 +27,7 @@ type RecordStore struct {
 
 // ResoRecord is a record we can use to do authority resolution
 type ResoRecord struct {
+	_msgpack        struct{} `msgpack:",omitempty"`
 	Identifier      string   `json:"identifier,omitempty"`
 	Type            string   `json:"type,omitempty"`
 	AltIdentifier   []string `json:"alt-identifier,omitempty"`
@@ -79,7 +81,8 @@ func MustNewRecordStore(db *bolt.DB) *RecordStore {
 // ConvertRecordToStorageOperations returns a list of operations to be stored
 func ConvertRecordToStorageOperations(record ResoRecord) ([]StorageOperation, error) {
 	keyValues := make([]StorageOperation, 0)
-	mainValue, err := json.Marshal(record)
+	mainValue, err := msgpack.Marshal(record)
+
 	if err != nil {
 		return keyValues, nil
 	}
@@ -157,7 +160,7 @@ func (r *RecordStore) FindByIdentifier(id string) (*ResoRecord, error) {
 		bucket := tx.Bucket([]byte(ResoRecordBucketName))
 		value := bucket.Get([]byte(fmt.Sprintf("%s:%s", IdentifierKeyPrefix, id)))
 
-		json.Unmarshal(value, &record)
+		msgpack.Unmarshal(value, &record)
 		return nil
 	})
 
@@ -166,4 +169,24 @@ func (r *RecordStore) FindByIdentifier(id string) (*ResoRecord, error) {
 	}
 
 	return &record, nil
+}
+
+func (r *RecordStore) Stats() (string, error) {
+	var statStr string
+	err := r.db.View(func(tx *bolt.Tx) error {
+		bucket := tx.Bucket([]byte(ResoRecordBucketName))
+		stats := bucket.Stats()
+		statBytes, err := json.Marshal(stats)
+		if err != nil {
+			return err
+		}
+		statStr = string(statBytes)
+		return nil
+	})
+
+	if err != nil {
+		return "", err
+	}
+
+	return statStr, nil
 }

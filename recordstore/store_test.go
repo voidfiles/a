@@ -42,7 +42,7 @@ func TestConvertRecordToKeyValues(t *testing.T) {
 
 	assert.Equal(t, recordstore.ResoRecordBucketName, operations[0].Bucket)
 	assert.Equal(t, []byte(fmt.Sprintf("%s:a", recordstore.IdentifierKeyPrefix)), operations[0].Key)
-	assert.Equal(t, "{\"identifier\":\"a\",\"alt-identifier\":[\"b\",\"c\"]}", string(operations[0].Value))
+	assert.Equal(t, "\x82\xaaIdentifier\xa1a\xadAltIdentifier\x92\xa1b\xa1c", string(operations[0].Value))
 
 	assert.Equal(t, recordstore.ResoRecordBucketName, operations[1].Bucket)
 	assert.Equal(t, fmt.Sprintf("%s:a:b", recordstore.AltIdentifierKeyPrefix), string(operations[1].Key))

@@ -87,5 +87,9 @@ func main() {
 		defer pprof.StopCPUProfile()
 	}
 	indexer.BatchWrite()
-
+	stats, err := recordStore.Stats()
+	if err != nil {
+		log.Print(err)
+	}
+	log.Print(stats)
 }
