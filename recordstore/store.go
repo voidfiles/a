@@ -1,6 +1,7 @@
 package recordstore
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 	"log"
@@ -169,6 +170,56 @@ func (r *RecordStore) FindByIdentifier(id string) (*ResoRecord, error) {
 	}
 
 	return &record, nil
+}
+
+type RecordPage struct {
+	Prefix  []byte
+	Records []ResoRecord
+	LastKey []byte
+	More    bool
+}
+
+func (r *RecordStore) Scan(prefix []byte, currentKey []byte, numResults int) RecordPage {
+	records := make([]ResoRecord, 0)
+	startingPrefix := prefix
+	if bytes.Compare(currentKey, startingPrefix) == 1 {
+		startingPrefix = currentKey
+	}
+
+	var recordPage RecordPage
+	r.db.View(func(tx *bolt.Tx) error {
+		bucket := tx.Bucket([]byte(ResoRecordBucketName))
+		c := bucket.Cursor()
+		results := 0
+		for k, v := c.Seek(startingPrefix); k != nil && bytes.HasPrefix(k, prefix); k, v = c.Next() {
+			results++
+			if results > numResults {
+				recordPage = RecordPage{
+					Prefix:  prefix,
+					Records: records,
+					LastKey: []byte(k),
+					More:    true,
+				}
+			}
+			var record ResoRecord
+			err := msgpack.Unmarshal(v, &record)
+			if err != nil {
+				return err
+			}
+			records = append(records, record)
+		}
+
+		recordPage = RecordPage{
+			Prefix:  prefix,
+			Records: records,
+			LastKey: []byte(""),
+			More:    false,
+		}
+
+		return nil
+	})
+
+	return recordPage
 }
 
 func (r *RecordStore) Stats() (string, error) {

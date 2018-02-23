@@ -76,11 +76,7 @@ run_boltdb:
 	$(WORKDIR)/a_$(OS)_$(ARCH) --db=bolt --dbpath=$(DATA_DIR)/cayley.db --indexpath=$(DATA_DIR)/search.db
 
 run_indexer_boltdb:
-	$(WORKDIR)/a_indexer_$(OS)_$(ARCH) --db=bolt --dbpath=$(DATA_DIR)/cayley.db  --indexpath=$(DATA_DIR)/search.db
-
-index_subjects:
-	mkdir -p $(DATA_DIR)
-	cat $(CACHE)/Subjects.2014.part01.xml | $(WORKDIR)/a_indexer_$(OS)_$(ARCH) --dbpath=$(DATA_DIR)/marcdex.db
+	$(WORKDIR)/a_fultext_indexer_$(OS)_$(ARCH) --dbpath=$(DATA_DIR)/marcdex.db  --indexpath=$(DATA_DIR)/search.db
 
 covert_fast_xml_to_binary:
 	$(WORKDIR)/a_marc2marc_$(OS)_$(ARCH) -i $(CACHE)/FASTChronological.marcxml -f m > $(CACHE)/FASTChronological.marc
