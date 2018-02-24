@@ -3,17 +3,16 @@ package main
 import (
 	"bufio"
 	"errors"
-	"flag"
+	"fmt"
 	"io"
 	"log"
 	"os"
-	"runtime/pprof"
 	"time"
 
 	"github.com/boutros/marc"
 	"github.com/coreos/bbolt"
 	"github.com/voidfiles/a/cli"
-	"github.com/voidfiles/a/marcdex"
+	"github.com/voidfiles/a/lcsh"
 	"github.com/voidfiles/a/recordstore"
 )
 
@@ -39,8 +38,31 @@ func detectFormat(f *os.File) (marc.Format, error) {
 	}
 }
 
+func marcReader(inputPath string) (io.Reader, marc.Format) {
+
+	if inputPath == "" {
+		reader := bufio.NewReader(os.Stdin)
+		format := marc.MARCXML
+
+		return reader, format
+	}
+
+	reader, err := os.Open(inputPath)
+
+	if err != nil {
+		panic(err)
+	}
+
+	format, err := detectFormat(reader)
+
+	if err != nil {
+		panic(err)
+	}
+
+	return reader, format
+}
+
 func main() {
-	var cpuprofile = flag.String("cpuprofile", "", "write cpu profile to `file`")
 	args := cli.GetArgs()
 
 	db, err := bolt.Open(args.Dbpath, 0666, &bolt.Options{
@@ -54,42 +76,24 @@ func main() {
 		panic(err)
 	}
 	recordStore := recordstore.MustNewRecordStore(db)
-	var reader io.Reader
-	var format marc.Format
-	if args.InputPath != "" {
-		reader, err = os.Open(args.InputPath)
-		if err != nil {
-			panic(err)
+	reader, format := marcReader(args.InputPath)
+
+	pipeline := lcsh.NewFileToRecordStorePipeline(recordStore, reader, format)
+	pipeline.Run()
+	ticker := time.NewTicker(1 * time.Second)
+	go func() {
+		for _ = range ticker.C {
+			fmt.Println(pipeline.Stats())
 		}
-		format, err = detectFormat(reader.(*os.File))
-		if err != nil {
-			panic(err)
-		}
+	}()
+
+	pipeline.Wait()
+	ticker.Stop()
+	fmt.Println(pipeline.Stats())
+	if stats, err := recordStore.Stats(); err != nil {
+		log.Print(err)
 	} else {
-		reader = bufio.NewReader(os.Stdin)
-		format = marc.MARCXML
-	}
-	log.Printf("Building a new marcstream format %v", format)
-	ms, err := marcdex.NewMarcStream(reader, 1000, format)
-	if err != nil {
-		panic(err)
+		log.Print(stats)
 	}
 
-	indexer := marcdex.MustNewMarcIndexer(ms, recordStore)
-	if *cpuprofile != "" {
-		f, err := os.Create(*cpuprofile)
-		if err != nil {
-			log.Fatal("could not create CPU profile: ", err)
-		}
-		if err := pprof.StartCPUProfile(f); err != nil {
-			log.Fatal("could not start CPU profile: ", err)
-		}
-		defer pprof.StopCPUProfile()
-	}
-	indexer.BatchWrite()
-	stats, err := recordStore.Stats()
-	if err != nil {
-		log.Print(err)
-	}
-	log.Print(stats)
 }
